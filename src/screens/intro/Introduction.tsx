@@ -28,21 +28,21 @@ const data = [
     color: '#00B0FF',
     icon: 'arrow-forward',
   },
+  // {
+  //   type: 'Grant Access',
+  //   imageUri: Images.filesImage,
+  //   heading: 'External Storage',
+  //   description:
+  //     'Serenity Needs Access to your External Storage to read your music',
+  //   key: 'second',
+  //   color: '#F9A826',
+  // },
   {
-    type: 'Grant Access',
+    type: 'Login',
     imageUri: Images.filesImage,
-    heading: 'External Storage',
+    heading: 'Sign In',
     description:
-      'Serenity Needs Access to your External Storage to read your music',
-    key: 'second',
-    color: '#F9A826',
-  },
-  {
-    type: 'Youtube',
-    imageUri: Images.youtubeImage,
-    heading: 'Youtube Music',
-    description:
-      'Serenity Needs Access to your YouTube library to list playlist you have created in YouTube. (Optional)',
+      'You must login to access the application',
     key: 'third',
     color: '#F50057',
     icon: 'logo-youtube',
@@ -57,15 +57,15 @@ const data = [
   //   color: '#6C63FF',
   //   icon: "color-palette-outline"
   // },
-  {
-    type: 'Ready',
-    imageUri: Images.readyImage,
-    heading: "Let's Go",
-    description: 'Introduction is over Enjoy Serenity!',
-    key: 'fourth',
-    color: '#00BFA6',
-    icon: 'done-outline',
-  },
+  // {
+  //   type: 'Ready',
+  //   imageUri: Images.readyImage,
+  //   heading: "Let's Go",
+  //   description: 'Introduction is over Enjoy Serenity!',
+  //   key: 'fourth',
+  //   color: '#00BFA6',
+  //   icon: 'done-outline',
+  // },
 ];
 const { width, height } = Dimensions.get('window');
 const LOGO_WIDTH = 220;
@@ -185,7 +185,7 @@ const Item = ({
     switch (type) {
       case 'Grant Access':
         return <LocalLibraryAccess color={color} next={next} />;
-      case 'Youtube':
+      case 'Login':
         return <GoogleLogin next={next} color={color} />;
       case 'Welcome':
         return (
