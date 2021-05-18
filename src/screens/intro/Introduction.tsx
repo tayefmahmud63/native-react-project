@@ -186,7 +186,7 @@ const Item = ({
       case 'Grant Access':
         return <LocalLibraryAccess color={color} next={next} />;
       case 'Login':
-        return <GoogleLogin next={next} color={color} />;
+        return <GoogleLogin next={launchApp} color={color} />;
       case 'Welcome':
         return (
           <Button

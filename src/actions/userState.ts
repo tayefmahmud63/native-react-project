@@ -38,7 +38,7 @@ export const googleSignIn = () => async (
 ) => {
   try {
     GoogleSignin.configure({
-      scopes: ['https://www.googleapis.com/auth/youtube'],
+      scopes: ['email'],
     });
     await GoogleSignin.hasPlayServices();
     const userInfo = await GoogleSignin.signIn();

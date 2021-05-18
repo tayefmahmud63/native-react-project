@@ -34,8 +34,8 @@ function GoogleLogin({ color, next }: GoogleLoginProps) {
 
   if (isAuthenticated) {
     return (
-      <Button mode="contained" icon="done-all" color={color} onPress={next}>
-        Done
+      <Button mode="contained" icon="home" color={color} onPress={next}>
+        Go to home
       </Button>
     );
   }
