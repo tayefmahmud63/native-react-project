@@ -1,20 +1,25 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { useTheme } from 'react-native-paper';
-import { ProgressBar } from 'react-track-player';
+import { ProgressBar, Text } from 'react-native-paper';
+import TrackPlayer from 'react-native-track-player';
+export class Progress extends TrackPlayer.ProgressComponent {
 
-export const Progress = () => {
-  const { colors } = useTheme();
-  return (
-    <View style={styles.view}>
-      <ProgressBar
-        style={styles.bar}
-        thumbTintColor={colors.primary}
-        trackTintColor={colors.primary}
-      />
-    </View>
-  );
-};
+  render() {
+    return (
+      // Note: formatTime and ProgressBar are just examples:
+      <View style={styles.view}>
+        <Text>{this.state.position}</Text>
+
+        <ProgressBar
+          progress={this.getProgress()}
+          buffered={this.getBufferedProgress()}
+        />
+      </View>
+    );
+  }
+
+}
+
 
 const styles = StyleSheet.create({
   view: {

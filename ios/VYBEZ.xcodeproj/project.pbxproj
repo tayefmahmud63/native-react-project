@@ -5,7 +5,6 @@
 	};
 	objectVersion = 54;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* VYBEZTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* VYBEZTests.m */; };
 		045EBBC1A8BD4B868EBB766A /* Nunito-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDCC6C8CE89C4971B4968179 /* Nunito-LightItalic.ttf */; };
@@ -31,6 +30,7 @@
 		F8CF35FA6DE3DB1B2176B9C4 /* libPods-VYBEZ-VYBEZTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BD8AFC4615F09B4F45862E9 /* libPods-VYBEZ-VYBEZTests.a */; };
 		F9EA894FEC6C4AD28ECE527F /* Nunito-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A29BE2744ECB465D9389B8ED /* Nunito-ExtraLight.ttf */; };
 		FD4BDAFDA0844EE384289BE3 /* Nunito-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F4290093184448CA696E492 /* Nunito-Italic.ttf */; };
+		B8473373506148F3BAD3444C /* RNPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AE12C36112499FA50E3A06 /* RNPlaceholder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +79,7 @@
 		D8D928652C17415080547B00 /* Nunito-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-Bold.ttf"; path = "../assets/fonts/Nunito-Bold.ttf"; sourceTree = "<group>"; };
 		DE75D06947344CD1A7BD8A05 /* Nunito-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-BlackItalic.ttf"; path = "../assets/fonts/Nunito-BlackItalic.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		F2AE12C36112499FA50E3A06 /* RNPlaceholder.swift */ = {isa = PBXFileReference; name = "RNPlaceholder.swift"; path = "RNPlaceholder.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -444,6 +445,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00E356F31AD99517003FC87E /* VYBEZTests.m in Sources */,
+				B8473373506148F3BAD3444C /* RNPlaceholder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,6 +456,7 @@
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				A6CCB92D264EF56700E1E56D /* File.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				B8473373506148F3BAD3444C /* RNPlaceholder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,6 +496,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VYBEZ.app/VYBEZ";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -518,6 +522,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VYBEZ.app/VYBEZ";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -544,7 +549,7 @@
 				PRODUCT_NAME = VYBEZ;
 				SWIFT_OBJC_BRIDGING_HEADER = "VYBEZ-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -570,7 +575,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.VYBEZ;
 				PRODUCT_NAME = VYBEZ;
 				SWIFT_OBJC_BRIDGING_HEADER = "VYBEZ-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -637,6 +642,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -695,6 +701,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

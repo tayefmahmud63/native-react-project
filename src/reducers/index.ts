@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { Appearance } from 'react-native';
+import { Appearance, Platform } from 'react-native';
 import { ArtistProps, TrackProps, AlbumProps } from '../utils/types';
 
 interface MediaActions {
@@ -44,7 +44,7 @@ const INITIAL_USER = {
   user: {},
   googleAccessGiven: false,
   offlineReadAccessGiven: false,
-  offlineWriteAccessGiven: false,
+  offlineWriteAccessGiven: Platform.OS === "ios",
   introSlidesShown: false,
 };
 

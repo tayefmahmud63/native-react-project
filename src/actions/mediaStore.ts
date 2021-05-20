@@ -11,6 +11,7 @@ import { log } from '../utils/logging';
 import { addSong } from './realmAction';
 import { TrackProps } from '../utils/types';
 import { giveWriteOfflineAccess } from './userState';
+import { Platform } from 'react-native';
 
 const DOWNLOADED_ID = 'user-playlist--000004';
 
@@ -179,20 +180,22 @@ export const downloadMedia = (item: TrackProps) => async (
   try {
     if (item) {
       const { offlineWriteAccessGiven } = getState().user;
-      if (!offlineWriteAccessGiven) {
-        dispatch({
-          payload: `Download songs by Granting Storage Permission`,
-          type: 'NOTIFY',
-        });
-        dispatch(giveWriteOfflineAccess());
-        return;
-      }
+      console.log("download audio", item, offlineWriteAccessGiven);
+      // if (!offlineWriteAccessGiven) {
+      //   dispatch({
+      //     payload: `Download songs by Granting Storage Permission`,
+      //     type: 'NOTIFY',
+      //   });
+      //   dispatch(giveWriteOfflineAccess());
+      //   return;
+      // }
       dispatch({
         payload:
           'Started download. You will be notified once the file is downloaded',
         type: 'NOTIFY',
       });
-      const folderPath = `${RNFS.ExternalStorageDirectoryPath}/Music`;
+      const folderPath = Platform.OS === "ios" ? `${RNFS.DocumentDirectoryPath}/Music` : `${RNFS.ExternalStorageDirectoryPath}/Music`;
+      console.log(folderPath);
       await checkFolderPath(folderPath);
       if (includes(['online'], item.type.toLowerCase())) {
         const filePath = `${folderPath}/${item.title.trim()}.mp3`;
