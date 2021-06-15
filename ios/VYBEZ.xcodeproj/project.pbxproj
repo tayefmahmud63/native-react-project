@@ -5,16 +5,32 @@
 	};
 	objectVersion = 54;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* VYBEZTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* VYBEZTests.m */; };
+		045EBBC1A8BD4B868EBB766A /* Nunito-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDCC6C8CE89C4971B4968179 /* Nunito-LightItalic.ttf */; };
+		0D0A64092F5D45E09D4C6678 /* Nunito-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D467CFA70C464831BCEE3E3D /* Nunito-ExtraBoldItalic.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		1482904A99F446AF9315B5D0 /* Nunito-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C0455125CD4C425DB5CEA34E /* Nunito-Black.ttf */; };
+		2D3F6DADC12040A3A48EDAA4 /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D8D928652C17415080547B00 /* Nunito-Bold.ttf */; };
+		4688E592CFDD4CCD8BAEA0F6 /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9FD6CF9F7A24DDC992E803C /* Nunito-SemiBold.ttf */; };
+		592430BE0A3F4DAA8808FCEB /* Nunito-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29D755EDB3224ACA895C6800 /* Nunito-Light.ttf */; };
+		75B004B7186E46D0B09E5F55 /* Nunito-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 02073144413E4E2693FB86E3 /* Nunito-ExtraBold.ttf */; };
+		80212A6B2B884D429C920F0E /* Nunito-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB1C14B62CB44794A43A9E55 /* Nunito-BoldItalic.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		A65FB98A265424D100153C42 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A65FB989265424D100153C42 /* GoogleService-Info.plist */; };
 		A6CCB822264EDA9400E1E56D /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6CCB821264EDA9300E1E56D /* BootSplash.storyboard */; };
+		A6CCB92D264EF56700E1E56D /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CCB92C264EF56700E1E56D /* File.swift */; };
+		A9C083D5FCC24FF3A3FF992B /* Nunito-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE75D06947344CD1A7BD8A05 /* Nunito-BlackItalic.ttf */; };
 		B9F288CE5E0F3AA8DA3580E4 /* libPods-VYBEZ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCA0F5BE7F21C960E8B8B93 /* libPods-VYBEZ.a */; };
+		C9828DCA3C13468CA3C054BB /* Nunito-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0B80B5F589CF41579DA785E1 /* Nunito-SemiBoldItalic.ttf */; };
+		D098FCFE15834104935EA1EC /* Nunito-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B3FAFA2D4EC94D7FA11CA092 /* Nunito-ExtraLightItalic.ttf */; };
+		DD1E5D6EEDEE459580F2DF4B /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BD23DD4C3BF492BB5A4694F /* Nunito-Regular.ttf */; };
 		F8CF35FA6DE3DB1B2176B9C4 /* libPods-VYBEZ-VYBEZTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BD8AFC4615F09B4F45862E9 /* libPods-VYBEZ-VYBEZTests.a */; };
+		F9EA894FEC6C4AD28ECE527F /* Nunito-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A29BE2744ECB465D9389B8ED /* Nunito-ExtraLight.ttf */; };
+		FD4BDAFDA0844EE384289BE3 /* Nunito-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F4290093184448CA696E492 /* Nunito-Italic.ttf */; };
+		B8473373506148F3BAD3444C /* RNPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AE12C36112499FA50E3A06 /* RNPlaceholder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,21 +47,39 @@
 		00E356EE1AD99517003FC87E /* VYBEZTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VYBEZTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* VYBEZTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VYBEZTests.m; sourceTree = "<group>"; };
+		02073144413E4E2693FB86E3 /* Nunito-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-ExtraBold.ttf"; path = "../assets/fonts/Nunito-ExtraBold.ttf"; sourceTree = "<group>"; };
+		0B80B5F589CF41579DA785E1 /* Nunito-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-SemiBoldItalic.ttf"; path = "../assets/fonts/Nunito-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* VYBEZ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VYBEZ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = VYBEZ/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = VYBEZ/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = VYBEZ/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = VYBEZ/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = VYBEZ/main.m; sourceTree = "<group>"; };
+		29D755EDB3224ACA895C6800 /* Nunito-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-Light.ttf"; path = "../assets/fonts/Nunito-Light.ttf"; sourceTree = "<group>"; };
+		4BD23DD4C3BF492BB5A4694F /* Nunito-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-Regular.ttf"; path = "../assets/fonts/Nunito-Regular.ttf"; sourceTree = "<group>"; };
 		5B370E4282A0693E81C202AB /* Pods-VYBEZ-VYBEZTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VYBEZ-VYBEZTests.release.xcconfig"; path = "Target Support Files/Pods-VYBEZ-VYBEZTests/Pods-VYBEZ-VYBEZTests.release.xcconfig"; sourceTree = "<group>"; };
 		5DCA0F5BE7F21C960E8B8B93 /* libPods-VYBEZ.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VYBEZ.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F4290093184448CA696E492 /* Nunito-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-Italic.ttf"; path = "../assets/fonts/Nunito-Italic.ttf"; sourceTree = "<group>"; };
 		7BD8AFC4615F09B4F45862E9 /* libPods-VYBEZ-VYBEZTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VYBEZ-VYBEZTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = VYBEZ/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9CCFFEEF74129BCD00E06F84 /* Pods-VYBEZ-VYBEZTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VYBEZ-VYBEZTests.debug.xcconfig"; path = "Target Support Files/Pods-VYBEZ-VYBEZTests/Pods-VYBEZ-VYBEZTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A29BE2744ECB465D9389B8ED /* Nunito-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-ExtraLight.ttf"; path = "../assets/fonts/Nunito-ExtraLight.ttf"; sourceTree = "<group>"; };
+		A65FB989265424D100153C42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A6CCB821264EDA9300E1E56D /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = VYBEZ/BootSplash.storyboard; sourceTree = "<group>"; };
+		A6CCB92B264EF56700E1E56D /* VYBEZ-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VYBEZ-Bridging-Header.h"; sourceTree = "<group>"; };
+		A6CCB92C264EF56700E1E56D /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		B3FAFA2D4EC94D7FA11CA092 /* Nunito-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-ExtraLightItalic.ttf"; path = "../assets/fonts/Nunito-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		B9FD6CF9F7A24DDC992E803C /* Nunito-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-SemiBold.ttf"; path = "../assets/fonts/Nunito-SemiBold.ttf"; sourceTree = "<group>"; };
+		BB1C14B62CB44794A43A9E55 /* Nunito-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-BoldItalic.ttf"; path = "../assets/fonts/Nunito-BoldItalic.ttf"; sourceTree = "<group>"; };
+		C0455125CD4C425DB5CEA34E /* Nunito-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-Black.ttf"; path = "../assets/fonts/Nunito-Black.ttf"; sourceTree = "<group>"; };
 		C32AEECCE74F99C7715BAA02 /* Pods-VYBEZ.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VYBEZ.release.xcconfig"; path = "Target Support Files/Pods-VYBEZ/Pods-VYBEZ.release.xcconfig"; sourceTree = "<group>"; };
 		CB965023049CC62949B98AD8 /* Pods-VYBEZ.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VYBEZ.debug.xcconfig"; path = "Target Support Files/Pods-VYBEZ/Pods-VYBEZ.debug.xcconfig"; sourceTree = "<group>"; };
+		CDCC6C8CE89C4971B4968179 /* Nunito-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-LightItalic.ttf"; path = "../assets/fonts/Nunito-LightItalic.ttf"; sourceTree = "<group>"; };
+		D467CFA70C464831BCEE3E3D /* Nunito-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-ExtraBoldItalic.ttf"; path = "../assets/fonts/Nunito-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		D8D928652C17415080547B00 /* Nunito-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-Bold.ttf"; path = "../assets/fonts/Nunito-Bold.ttf"; sourceTree = "<group>"; };
+		DE75D06947344CD1A7BD8A05 /* Nunito-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-BlackItalic.ttf"; path = "../assets/fonts/Nunito-BlackItalic.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		F2AE12C36112499FA50E3A06 /* RNPlaceholder.swift */ = {isa = PBXFileReference; name = "RNPlaceholder.swift"; path = "RNPlaceholder.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +122,7 @@
 		13B07FAE1A68108700A75B9A /* VYBEZ */ = {
 			isa = PBXGroup;
 			children = (
+				A65FB989265424D100153C42 /* GoogleService-Info.plist */,
 				A6CCB821264EDA9300E1E56D /* BootSplash.storyboard */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -95,6 +130,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				A6CCB92C264EF56700E1E56D /* File.swift */,
+				A6CCB92B264EF56700E1E56D /* VYBEZ-Bridging-Header.h */,
 			);
 			name = VYBEZ;
 			sourceTree = "<group>";
@@ -125,6 +162,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				C3BE1A1C8AA897C9ACC86F21 /* Pods */,
+				D7DFDA8998BF4A3D86153418 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -149,6 +187,27 @@
 				5B370E4282A0693E81C202AB /* Pods-VYBEZ-VYBEZTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D7DFDA8998BF4A3D86153418 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C0455125CD4C425DB5CEA34E /* Nunito-Black.ttf */,
+				DE75D06947344CD1A7BD8A05 /* Nunito-BlackItalic.ttf */,
+				D8D928652C17415080547B00 /* Nunito-Bold.ttf */,
+				BB1C14B62CB44794A43A9E55 /* Nunito-BoldItalic.ttf */,
+				02073144413E4E2693FB86E3 /* Nunito-ExtraBold.ttf */,
+				D467CFA70C464831BCEE3E3D /* Nunito-ExtraBoldItalic.ttf */,
+				A29BE2744ECB465D9389B8ED /* Nunito-ExtraLight.ttf */,
+				B3FAFA2D4EC94D7FA11CA092 /* Nunito-ExtraLightItalic.ttf */,
+				5F4290093184448CA696E492 /* Nunito-Italic.ttf */,
+				29D755EDB3224ACA895C6800 /* Nunito-Light.ttf */,
+				CDCC6C8CE89C4971B4968179 /* Nunito-LightItalic.ttf */,
+				4BD23DD4C3BF492BB5A4694F /* Nunito-Regular.ttf */,
+				B9FD6CF9F7A24DDC992E803C /* Nunito-SemiBold.ttf */,
+				0B80B5F589CF41579DA785E1 /* Nunito-SemiBoldItalic.ttf */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,7 +267,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1230;
 					};
 				};
 			};
@@ -244,8 +303,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6CCB822264EDA9400E1E56D /* BootSplash.storyboard in Resources */,
+				A65FB98A265424D100153C42 /* GoogleService-Info.plist in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				1482904A99F446AF9315B5D0 /* Nunito-Black.ttf in Resources */,
+				A9C083D5FCC24FF3A3FF992B /* Nunito-BlackItalic.ttf in Resources */,
+				2D3F6DADC12040A3A48EDAA4 /* Nunito-Bold.ttf in Resources */,
+				80212A6B2B884D429C920F0E /* Nunito-BoldItalic.ttf in Resources */,
+				75B004B7186E46D0B09E5F55 /* Nunito-ExtraBold.ttf in Resources */,
+				0D0A64092F5D45E09D4C6678 /* Nunito-ExtraBoldItalic.ttf in Resources */,
+				F9EA894FEC6C4AD28ECE527F /* Nunito-ExtraLight.ttf in Resources */,
+				D098FCFE15834104935EA1EC /* Nunito-ExtraLightItalic.ttf in Resources */,
+				FD4BDAFDA0844EE384289BE3 /* Nunito-Italic.ttf in Resources */,
+				592430BE0A3F4DAA8808FCEB /* Nunito-Light.ttf in Resources */,
+				045EBBC1A8BD4B868EBB766A /* Nunito-LightItalic.ttf in Resources */,
+				DD1E5D6EEDEE459580F2DF4B /* Nunito-Regular.ttf in Resources */,
+				4688E592CFDD4CCD8BAEA0F6 /* Nunito-SemiBold.ttf in Resources */,
+				C9828DCA3C13468CA3C054BB /* Nunito-SemiBoldItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,6 +445,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00E356F31AD99517003FC87E /* VYBEZTests.m in Sources */,
+				B8473373506148F3BAD3444C /* RNPlaceholder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,7 +454,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				A6CCB92D264EF56700E1E56D /* File.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				B8473373506148F3BAD3444C /* RNPlaceholder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +475,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9CCFFEEF74129BCD00E06F84 /* Pods-VYBEZ-VYBEZTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -418,6 +496,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VYBEZ.app/VYBEZ";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -425,6 +504,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5B370E4282A0693E81C202AB /* Pods-VYBEZ-VYBEZTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = VYBEZTests/Info.plist;
@@ -442,6 +522,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VYBEZ.app/VYBEZ";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -466,8 +547,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.VYBEZ;
 				PRODUCT_NAME = VYBEZ;
+				SWIFT_OBJC_BRIDGING_HEADER = "VYBEZ-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -492,7 +574,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.VYBEZ;
 				PRODUCT_NAME = VYBEZ;
-				SWIFT_VERSION = 5.0;
+				SWIFT_OBJC_BRIDGING_HEADER = "VYBEZ-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -559,6 +642,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -617,6 +701,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
