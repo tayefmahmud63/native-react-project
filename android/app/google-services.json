@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "607638068572",
+    "project_id": "vibez-d769b",
+    "storage_bucket": "vibez-d769b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:607638068572:android:2ebe5aa77ca056c23c7599",
+        "android_client_info": {
+          "package_name": "com.vybez"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "607638068572-s11ctgnami56kq4a7iejjld9viieidtn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhM0kMWzpV8uX3ckEhlJTrQPF9s0lxVRA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "607638068572-s11ctgnami56kq4a7iejjld9viieidtn.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "607638068572-tjs8orsskfpiudsa0fnnvqifuf6p6cdg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.vybez"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

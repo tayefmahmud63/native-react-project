@@ -48,9 +48,11 @@ import DoneAllIcon from '../assets/Icons/done-all.svg';
 import UnlockOutlineIcon from '../assets/Icons/unlock-outline.svg';
 import LogInOutlineIcon from '../assets/Icons/log-in-outline.svg';
 import PersonOutlineIcon from '../assets/Icons/person-outline.svg';
+import ForwardOutlineIcon from '../assets/Icons/forward-outline.svg';
+import BackwardOutlineIcon from '../assets/Icons/backward-outline.svg';
 import { log } from '../utils/logging';
 
-const ICONS = {
+export const ICONS = {
   'arrow-back': ArrowBackIcon,
   'skip-back-outline': SkipBackOutlineIcon,
   'skip-forward-outline': SkipForwardOutlineIcon,
@@ -100,6 +102,8 @@ const ICONS = {
   'unlock-outline': UnlockOutlineIcon,
   'log-in-outline': LogInOutlineIcon,
   'person-outline': PersonOutlineIcon,
+  'forward-outline': ForwardOutlineIcon,
+  'backward-outline': BackwardOutlineIcon
 };
 
 export interface IconProps {

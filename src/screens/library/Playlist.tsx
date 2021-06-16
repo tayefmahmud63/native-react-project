@@ -12,28 +12,20 @@ import { RefreshControl, SectionList, StyleSheet, View } from 'react-native';
 
 import { Collection } from 'realm';
 import { StackScreenProps } from '@react-navigation/stack';
-import { useSelector } from 'react-redux';
 import FastImage from 'react-native-fast-image';
 import { createPlaylist, getAllPlaylists } from '../../actions/realmAction';
 import { deserializePlaylists } from '../../utils/database';
 import { Screen } from '../../components/Screen';
 import { PlaylistProps } from '../../utils/types';
-import { getYoutubePlaylist } from '../../services/Youtube';
-import { useCache } from '../../hooks/useCache';
 import realm from '../../database';
 import { Title } from '../../components/Title';
 
 export const PlaylistScreen = ({ navigation }: StackScreenProps) => {
-  const { googleAccessGiven } = useSelector(state => state.user);
   const { colors } = useTheme();
   let realmPlaylists = getAllPlaylists();
   const [visible, setVisible] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [name, setName] = useState('');
-  const [youtubePlaylists, { refresh, get }] = useCache(
-    'youtube_playlists',
-    () => getYoutubePlaylist(),
-  );
 
   const [localPlaylists, setLocalPlaylists] = useState(() => {
     return deserializePlaylists(realmPlaylists);
@@ -70,17 +62,6 @@ export const PlaylistScreen = ({ navigation }: StackScreenProps) => {
     setName(text);
   };
 
-  const onRefresh = () => {
-    setRefreshing(true);
-    realmPlaylists = getAllPlaylists();
-    const updatedList = deserializePlaylists(realmPlaylists);
-    setLocalPlaylists(updatedList);
-    if (googleAccessGiven) {
-      refresh();
-    }
-    setRefreshing(false);
-  };
-
   useEffect(() => {
     const listner = (playlists: Collection<object>, changes: any) => {
       if (
@@ -102,20 +83,8 @@ export const PlaylistScreen = ({ navigation }: StackScreenProps) => {
   useEffect(() => {
     const playlists = [];
     playlists.push({ title: 'Local Playlists', data: localPlaylists });
-    if (youtubePlaylists && youtubePlaylists.length) {
-      playlists.push({
-        title: 'Youtube Playlists',
-        data: youtubePlaylists,
-      });
-    }
     setPlaylists(playlists);
-  }, [localPlaylists, youtubePlaylists]);
-
-  useEffect(() => {
-    if (googleAccessGiven) {
-      get();
-    }
-  }, [googleAccessGiven, get]);
+  }, [localPlaylists]);
 
   function refreshPlaylist(title: string) {
     if (title === 'Local Playlists') {
@@ -124,8 +93,6 @@ export const PlaylistScreen = ({ navigation }: StackScreenProps) => {
       const updatedList = deserializePlaylists(realmPlaylists);
       setLocalPlaylists(updatedList);
       setRefreshing(false);
-    } else if (title === 'Youtube Playlists') {
-      refresh();
     }
   }
 
@@ -180,9 +147,6 @@ export const PlaylistScreen = ({ navigation }: StackScreenProps) => {
             onPress={() => navigateToCollection(item)}
           />
         )}
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-        }
         renderSectionHeader={({ section: { title } }) => (
           <View style={styles.sectionHeader}>
             <Title>{title}</Title>

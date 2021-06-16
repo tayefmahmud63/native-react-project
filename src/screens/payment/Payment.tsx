@@ -1,4 +1,6 @@
+import React from 'react';
 import { StripeProvider } from '@stripe/stripe-react-native';
+import { CardField, useStripe } from '@stripe/stripe-react-native';
 
 const publishableKey = '';
 
@@ -14,7 +16,6 @@ export default function PaymentScreen() {
 }
 
 // PaymentScreen.ts
-import { CardField, useStripe } from '@stripe/stripe-react-native';
 
 function Payment() {
     const { confirmPayment } = useStripe();

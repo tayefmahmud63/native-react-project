@@ -18,7 +18,7 @@ import {
 import { deserializeSongs } from '../utils/database';
 import { log } from '../utils/logging';
 import { TrackProps, AlbumProps } from '../utils/types';
-import TrackPlayer from 'react-native-track-player';
+import TrackPlayer, { STATE_BUFFERING, STATE_PAUSED, STATE_PLAYING, STATE_STOPPED } from 'react-native-track-player';
 
 let subscription: EmitterSubscription;
 
@@ -29,29 +29,53 @@ const FAVOURITE_ID = 'user-playlist--000002';
 export const setUpTrackPlayer =
   () => (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     try {
+      TrackPlayer.updateOptions({
+        stopWithApp: true,
+        // Media controls capabilities
+        capabilities: [
+          TrackPlayer.CAPABILITY_PLAY,
+          TrackPlayer.CAPABILITY_PAUSE,
+          TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
+          TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS
+          // TrackPlayer.CAPABILITY_NEXT,
+          // TrackPlayer.CAPABILITY_PREVIOUS,
+        ],
+
+        // Capabilities that will show up when the notification is in the compact form on Android
+        compactCapabilities: [
+          TrackPlayer.CAPABILITY_PLAY,
+          TrackPlayer.CAPABILITY_PAUSE
+        ],
+      });
       TrackPlayer.setupPlayer();
       subscription = TrackPlayer.addEventListener('playback-state', event => {
         // handle event
         const { state } = event;
-        console.log('from event listener', event);
-        if (state === 'skip_to_next') {
-          dispatch(skipToNext());
-        } else if (state === 'skip_to_previous') {
-          dispatch(skipToPrevious());
-        } else if (state === 'skip_to_next') {
-          dispatch(skipToNext());
-        } else {
+        if (state === STATE_PLAYING) {
           dispatch({
-            status: state,
+            status: 'playing',
+            type: 'STATUS',
+          });
+        } else if (state === STATE_PAUSED) {
+          dispatch({
+            status: 'paused',
+            type: 'STATUS',
+          });
+        } else if (state === STATE_STOPPED) {
+          dispatch({
+            status: 'complete',
+            type: 'STATUS',
+          });
+        }
+        else if (state === STATE_BUFFERING) {
+          dispatch({
+            status: 'loading',
             type: 'STATUS',
           });
         }
       });
 
-      dispatch({
-        status: 'paused',
-        type: 'STATUS',
-      });
+
     } catch (error) {
       log.error('setUpTrackPlayer', error);
     }
@@ -73,22 +97,6 @@ export const loadTrack =
           track.url = audioUrl;
           await TrackPlayer.add([track]);
           TrackPlayer.play();
-          // TrackPlayer.load({
-          //   path: audioUrl,
-          //   title: track.title,
-          //   artist: track.artist,
-          //   cover: track.cover,
-          // })
-          //   .then(() => {
-          //     if (playOnLoad) TrackPlayer.play();
-          //   })
-          //   .catch(error => {
-          //     log.error('loadTrack', error);
-          //     dispatch({
-          //       payload: `loadTrack ${path} of type ${type} failed`,
-          //       type: 'NOTIFY',
-          //     });
-          //   });
         } else {
           log.debug(
             'loadTrack',

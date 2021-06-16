@@ -5,6 +5,7 @@ import { MainScreen } from './Main';
 import { SettingScreen } from './Settings';
 import { SongsList } from '../shared/SongsList';
 import { getGreetingTime } from '../../utils/greeting';
+import PaymentScreen from '../payment/Payment';
 
 const Stack = createStackNavigator();
 
@@ -45,6 +46,14 @@ const HomeStack = () => {
         options={{
           headerTitleAlign: 'center',
           headerTitle: 'Settings',
+        }}
+      />
+      <Stack.Screen
+        name="Payment"
+        component={PaymentScreen}
+        options={{
+          headerTitleAlign: 'center',
+          headerTitle: 'Subscription',
         }}
       />
       <Stack.Screen

@@ -136,6 +136,11 @@ export const SettingScreen = ({ navigation }: StackScreenProps) => {
             icon="alert-circle-outline"
           />
           <Drawer.Item
+            onPress={() => navigation.navigate("Payment")}
+            label="Payment"
+            icon="person-outline"
+          />
+          <Drawer.Item
             onPress={showAlert}
             label="Clear history"
             icon="trash-outline"

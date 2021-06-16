@@ -67,9 +67,7 @@ export const PlayerScreen = ({ navigation }) => {
               <Progress />
             </View>
             <View style={styles.playerToolbox}>
-              <FavContainer item={active} type="song" style={{ flex: 1 }} />
               <PlayerController />
-              <RepeatContainer />
             </View>
             <View style={styles.extraMenuContainer}>
               <View style={styles.extraIcon}>
@@ -95,6 +93,14 @@ export const PlayerScreen = ({ navigation }) => {
                     <Caption>Download</Caption>
                   </View>
                 )}
+              <View style={styles.extraIcon}>
+                <FavContainer item={active} type="song" style={{ flex: 1 }} />
+                <Caption>Favorites</Caption>
+              </View>
+              <View style={styles.extraIcon}>
+                <RepeatContainer />
+                <Caption>Repeat</Caption>
+              </View>
               <View style={styles.extraIcon}>
                 <IconButton
                   size={20}
