@@ -55,6 +55,10 @@ Type safe programming language
 
 Offline key value storage and also used for Redux state persistance
 
+- [react-native-fs](https://www.npmjs.com/package/react-native-fs)
+
+For native file management
+
 ## Branches
 
 - develop -> pr this branch for everything
@@ -136,3 +140,13 @@ Inside each screen folder index.tsx contains the navigation stack defined
 Additional files of the application
 
 `theme.ts` contains theme definitions
+
+### assets
+
+`Icons` svg icons used in the project stays here
+
+`Animations` lottie json animations lives here
+
+`images` Introduction screen images here
+
+`Media.json` contains hard coded songs
