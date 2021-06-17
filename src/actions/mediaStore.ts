@@ -156,7 +156,7 @@ const _downloadFileProgress = data => {
 function download(url: string, filePath: string) {
   const { promise } = RNFS.downloadFile({
     fromUrl: url,
-    toFile: filePath,
+    toFile: encodeURI(filePath),
     progress: data => _downloadFileProgress(data),
   });
   return promise;
@@ -165,6 +165,7 @@ function download(url: string, filePath: string) {
 async function checkFolderPath(folderPath: string) {
   try {
     const isPresent = await RNFS.exists(folderPath);
+    log.debug("is folder present: ", isPresent);
     if (!isPresent) {
       await RNFS.mkdir(folderPath);
     }
@@ -180,7 +181,6 @@ export const downloadMedia = (item: TrackProps) => async (
   try {
     if (item) {
       const { offlineWriteAccessGiven } = getState().user;
-      console.log("download audio", item, offlineWriteAccessGiven);
       // if (!offlineWriteAccessGiven) {
       //   dispatch({
       //     payload: `Download songs by Granting Storage Permission`,
@@ -194,14 +194,14 @@ export const downloadMedia = (item: TrackProps) => async (
           'Started download. You will be notified once the file is downloaded',
         type: 'NOTIFY',
       });
-      const folderPath = Platform.OS === "ios" ? `${RNFS.DocumentDirectoryPath}/Music` : `${RNFS.ExternalStorageDirectoryPath}/Music`;
-      console.log(folderPath);
+      const folderPath = Platform.OS === "ios" ? `file://${RNFS.DocumentDirectoryPath}/Music` : `${RNFS.ExternalStorageDirectoryPath}/Music`;
       await checkFolderPath(folderPath);
       if (includes(['online'], item.type.toLowerCase())) {
         const filePath = `${folderPath}/${item.title.trim()}.mp3`;
         const response = await download(item.path, filePath);
         item.path = filePath;
-        log.debug('downloadMedia', response.toString());
+        log.debug(`downloadMedia ${filePath}`, response.toString());
+        RNFS.readDir(folderPath).then(response => console.log("readDir: ", response))
       }
       addSongToDownloads(item);
       dispatch({
