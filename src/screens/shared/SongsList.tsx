@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { Title, Button, Divider, Subheading } from 'react-native-paper';
+import {
+  Title,
+  Button,
+  Divider,
+  Subheading,
+  IconButton,
+} from 'react-native-paper';
 import { StyleSheet, View, FlatList, RefreshControl } from 'react-native';
 import { useDispatch } from 'react-redux';
 import isEmpty from 'lodash/isEmpty';
@@ -12,8 +18,9 @@ import { Screen } from '../../components/Screen';
 import { EmptyPlaylist } from '../../components/EmptyPlaylist';
 
 import { TrackProps } from '../../utils/types';
+import { useLayoutEffect } from 'react';
 
-export const SongsList = ({ route }) => {
+export const SongsList = ({ route, navigation }) => {
   const { playlist, songs } = route.params;
   const [refreshing, setRefreshing] = useState(false);
 
@@ -26,6 +33,18 @@ export const SongsList = ({ route }) => {
   const onRefresh = () => {
     setRefreshing(false);
   };
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitle: playlist.name,
+      headerRight: () => (
+        <IconButton
+          icon="play-circle-outline"
+          onPress={() => addSongToQueue()}
+        />
+      ),
+    });
+  }, [navigation]);
 
   return (
     <Screen>

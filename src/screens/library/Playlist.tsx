@@ -8,7 +8,7 @@ import {
   useTheme,
   Chip,
 } from 'react-native-paper';
-import { RefreshControl, SectionList, StyleSheet, View } from 'react-native';
+import { SectionList, StyleSheet, View } from 'react-native';
 
 import { Collection } from 'realm';
 import { StackScreenProps } from '@react-navigation/stack';
@@ -33,17 +33,10 @@ export const PlaylistScreen = ({ navigation }: StackScreenProps) => {
   const [playlists, setPlaylists] = useState([]);
 
   const navigateToCollection = (playlist: PlaylistProps) => {
-    if (playlist.type === 'Youtube') {
-      navigation.navigate('Songs', {
-        songs: playlist.songs,
-        playlist,
-      });
-    } else {
-      delete playlist.songs;
-      navigation.navigate('PlaylistSongs', {
-        playlist,
-      });
-    }
+    delete playlist.songs;
+    navigation.navigate('PlaylistSongs', {
+      playlist,
+    });
   };
 
   const showDialog = () => setVisible(true);
@@ -153,8 +146,7 @@ export const PlaylistScreen = ({ navigation }: StackScreenProps) => {
             <Chip
               icon="refresh-outline"
               disabled={refreshing}
-              onPress={() => refreshPlaylist(title)}
-            >
+              onPress={() => refreshPlaylist(title)}>
               Refresh
             </Chip>
           </View>

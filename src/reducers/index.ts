@@ -44,7 +44,7 @@ const INITIAL_USER = {
   user: {},
   googleAccessGiven: false,
   offlineReadAccessGiven: false,
-  offlineWriteAccessGiven: Platform.OS === "ios",
+  offlineWriteAccessGiven: Platform.OS === 'ios',
   introSlidesShown: false,
 };
 

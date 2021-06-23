@@ -7,13 +7,13 @@ import { View } from 'react-native';
 import { AlbumScreen } from './Album';
 import { ArtistScreen } from './Artist';
 import { PlaylistScreen } from './Playlist';
-import { SongsList } from '../shared/SongsList';
 import { AlbumSongs } from '../shared/AlbumSongs';
 import { ArtistSongs } from '../shared/ArtistSongs';
 import { FavContainer } from '../../containers/FavContainer';
 import { AddToQueueIcon } from '../../containers/AddToQueueIcon';
 import { PlaylistOptions } from '../../containers/PlaylistOptions';
 import { PlaylistSongs } from './PlaylistSongs';
+import { DownloadScreen } from './Downloads';
 
 const Stack = createStackNavigator();
 const Tab = createMaterialTopTabNavigator();
@@ -37,8 +37,7 @@ const TabNavigator = () => {
           fontSize: 16,
           textTransform: 'none',
         },
-      }}
-    >
+      }}>
       <Tab.Screen name="Playlist" component={PlaylistScreen} />
       <Tab.Screen name="Artist" component={ArtistScreen} />
       <Tab.Screen name="Album" component={AlbumScreen} />
@@ -61,12 +60,16 @@ export const LibraryStack = () => {
         headerBackImage: () => (
           <IconButton style={{ marginLeft: 0 }} icon="arrow-back" />
         ),
-      }}
-    >
+      }}>
       <Stack.Screen
         name="Tabs"
         component={TabNavigator}
         options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Downloads"
+        component={DownloadScreen}
+      // options={{ headerShown: false }}
       />
       <Stack.Screen
         name="ArtistSongs"
@@ -98,19 +101,6 @@ export const LibraryStack = () => {
                 <FavContainer item={album} type="album" />
                 <AddToQueueIcon type="album" title={title} />
               </View>
-            ),
-          };
-        }}
-      />
-      <Stack.Screen
-        name="Songs"
-        component={SongsList}
-        options={({ route, navigation }) => {
-          const { playlist } = route.params;
-          return {
-            headerTitle: playlist.name,
-            headerRight: () => (
-              <PlaylistOptions route={route} navigation={navigation} />
             ),
           };
         }}

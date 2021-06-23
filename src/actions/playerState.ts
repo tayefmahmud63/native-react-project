@@ -18,7 +18,12 @@ import {
 import { deserializeSongs } from '../utils/database';
 import { log } from '../utils/logging';
 import { TrackProps, AlbumProps } from '../utils/types';
-import TrackPlayer, { STATE_BUFFERING, STATE_PAUSED, STATE_PLAYING, STATE_STOPPED } from 'react-native-track-player';
+import TrackPlayer, {
+  STATE_BUFFERING,
+  STATE_PAUSED,
+  STATE_PLAYING,
+  STATE_STOPPED,
+} from 'react-native-track-player';
 
 let subscription: EmitterSubscription;
 
@@ -36,7 +41,7 @@ export const setUpTrackPlayer =
           TrackPlayer.CAPABILITY_PLAY,
           TrackPlayer.CAPABILITY_PAUSE,
           TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
-          TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS
+          TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
           // TrackPlayer.CAPABILITY_NEXT,
           // TrackPlayer.CAPABILITY_PREVIOUS,
         ],
@@ -44,7 +49,7 @@ export const setUpTrackPlayer =
         // Capabilities that will show up when the notification is in the compact form on Android
         compactCapabilities: [
           TrackPlayer.CAPABILITY_PLAY,
-          TrackPlayer.CAPABILITY_PAUSE
+          TrackPlayer.CAPABILITY_PAUSE,
         ],
       });
       TrackPlayer.setupPlayer();
@@ -66,16 +71,13 @@ export const setUpTrackPlayer =
             status: 'complete',
             type: 'STATUS',
           });
-        }
-        else if (state === STATE_BUFFERING) {
+        } else if (state === STATE_BUFFERING) {
           dispatch({
             status: 'loading',
             type: 'STATUS',
           });
         }
       });
-
-
     } catch (error) {
       log.error('setUpTrackPlayer', error);
     }
@@ -89,6 +91,7 @@ export const loadTrack =
         const { path } = track;
         let audioUrl = path;
         log.debug('loadTrack', `load track: ${track.path}`);
+
         if (path) {
           dispatch({
             track,
@@ -96,7 +99,9 @@ export const loadTrack =
           });
           track.url = audioUrl;
           await TrackPlayer.add([track]);
-          TrackPlayer.play();
+          if (playOnLoad) {
+            TrackPlayer.play();
+          }
         } else {
           log.debug(
             'loadTrack',
@@ -104,7 +109,7 @@ export const loadTrack =
           );
         }
       } catch (error) {
-        log.error(`loadTrack`, error);
+        log.error('loadTrack', error);
       }
     };
 
@@ -193,7 +198,7 @@ export const skipToNext =
         });
       }
     } catch (error) {
-      log.error(`skipToNext`, error);
+      log.error('skipToNext', error);
     }
   };
 
@@ -239,9 +244,11 @@ export const addToQueue =
       if (Array.isArray(songs)) {
         songs.forEach(song => {
           addSong(QUEUE_ID, song, true);
+          TrackPlayer.add([song]);
         });
       } else {
         addSong(QUEUE_ID, songs, true);
+        TrackPlayer.add(songs);
       }
 
       if (isEmpty(getState().playerState.active)) {
@@ -297,7 +304,7 @@ export const removeAlbumFromFavorite =
   (album: AlbumProps) => (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     removeAlbum(album.id);
     dispatch({
-      payload: `Album removed from favorites`,
+      payload: 'Album removed from favorites',
       type: 'NOTIFY',
     });
   };
@@ -325,7 +332,7 @@ export const playTrack = () => {
   try {
     TrackPlayer.play();
   } catch (error) {
-    log.error(`playTrack`, error);
+    log.error('playTrack', error);
   }
 };
 

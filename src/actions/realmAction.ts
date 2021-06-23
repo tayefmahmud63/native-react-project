@@ -25,38 +25,40 @@ const generateId = () => {
 };
 
 const generateSongId = () => {
-  const r = Math.random()
-    .toString(36)
-    .substring(7);
+  const r = Math.random().toString(36).substring(7);
   return `${userSongIdPrefix}${r}`;
 };
 
 export const defaultDBSetup = () => {
-  realm.write(() => {
-    realm.create(PLAYLIST_SCHEMA_NAME, {
-      id: `${userPlaylistIdPrefix}000001`,
-      name: 'Recently Played',
-      owner: 'Serenity',
-    });
+  try {
+    realm.write(() => {
+      realm.create(PLAYLIST_SCHEMA_NAME, {
+        id: `${userPlaylistIdPrefix}000001`,
+        name: 'Recently Played',
+        owner: 'Serenity',
+      });
 
-    realm.create(PLAYLIST_SCHEMA_NAME, {
-      id: `${userPlaylistIdPrefix}000002`,
-      name: 'Favorite',
-      owner: 'Serenity',
-    });
+      realm.create(PLAYLIST_SCHEMA_NAME, {
+        id: `${userPlaylistIdPrefix}000002`,
+        name: 'Favorite',
+        owner: 'Serenity',
+      });
 
-    realm.create(PLAYLIST_SCHEMA_NAME, {
-      id: `${userPlaylistIdPrefix}000003`,
-      name: 'Queue',
-      owner: 'Serenity',
-    });
+      realm.create(PLAYLIST_SCHEMA_NAME, {
+        id: `${userPlaylistIdPrefix}000003`,
+        name: 'Queue',
+        owner: 'Serenity',
+      });
 
-    realm.create(PLAYLIST_SCHEMA_NAME, {
-      id: `${userPlaylistIdPrefix}000004`,
-      name: 'Downloads',
-      owner: 'Serenity',
+      realm.create(PLAYLIST_SCHEMA_NAME, {
+        id: `${userPlaylistIdPrefix}000004`,
+        name: 'Downloads',
+        owner: 'Serenity',
+      });
     });
-  });
+  } catch (error) {
+    log.error(error);
+  }
 };
 
 export const getAllPlaylists = () => {
@@ -74,7 +76,7 @@ export const getPlaylist = (id: string) => {
     const playlist = realm.objectForPrimaryKey(PLAYLIST_SCHEMA_NAME, id);
     return playlist;
   } catch (error) {
-    log.error(`getPlaylist`, error);
+    log.error('getPlaylist', error);
     return [];
   }
 };
@@ -87,7 +89,7 @@ export const getPlaylistSongs = (id: string) => {
     }
     return undefined;
   } catch (error) {
-    log.error(`getPlaylistSongs`, error);
+    log.error('getPlaylistSongs', error);
     return undefined;
   }
 };
@@ -103,7 +105,7 @@ export const getQueuedSongs = () => {
     }
     return undefined;
   } catch (error) {
-    log.error(`getQueuedSongs`, error);
+    log.error('getQueuedSongs', error);
     return undefined;
   }
 };
@@ -119,7 +121,7 @@ export const getPlayedSongs = () => {
     }
     return undefined;
   } catch (error) {
-    log.error(`getPlayedSongs`, error);
+    log.error('getPlayedSongs', error);
     return undefined;
   }
 };
@@ -135,7 +137,7 @@ export const getFavoriteSongs = () => {
     }
     return undefined;
   } catch (error) {
-    log.error(`getPlayedSongs`, error);
+    log.error('getPlayedSongs', error);
     return undefined;
   }
 };
@@ -155,11 +157,11 @@ export const removeSong = (id: string, song: TrackProps) => {
   try {
     realm.write(() => {
       const playlist = realm.objectForPrimaryKey(PLAYLIST_SCHEMA_NAME, id);
-      const item = playlist.songs.filtered(`id = $0`, song.id);
+      const item = playlist.songs.filtered('id = $0', song.id);
       realm.delete(item);
     });
   } catch (error) {
-    log.error(`removeSong`, error);
+    log.error('removeSong', error);
   }
 };
 
@@ -203,7 +205,7 @@ export const addSong = (
       }
     });
   } catch (error) {
-    log.error(`addSong`, error);
+    log.error('addSong', error);
   }
 };
 
@@ -216,7 +218,7 @@ export const clearAllSongs = (id: string) => {
       }
     });
   } catch (error) {
-    log.error(`clearAllSongs`, error);
+    log.error('clearAllSongs', error);
   }
 };
 
@@ -316,7 +318,7 @@ export const getArtists = () => {
   try {
     return realm.objects(ARTIST_SCHEMA_NAME);
   } catch (error) {
-    log.error(`getArtists`, error);
+    log.error('getArtists', error);
     return [];
   }
 };
@@ -325,7 +327,7 @@ export const getAlbums = () => {
   try {
     return realm.objects(ALBUM_SCHEMA_NAME);
   } catch (error) {
-    log.error(`getAlbums`, error);
+    log.error('getAlbums', error);
     return [];
   }
 };

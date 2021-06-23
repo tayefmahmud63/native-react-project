@@ -47,12 +47,10 @@ export const PlayerScreen = ({ navigation }) => {
             : require('../../../assets/logo.jpg')
         }
         blurRadius={40}
-        style={[styles.imageBackground, { backgroundColor: colors.background }]}
-      >
+        style={[styles.imageBackground, { backgroundColor: colors.background }]}>
         <LinearGradient
           colors={['transparent', colors.background]}
-          style={{ flex: 1 }}
-        >
+          style={{ flex: 1 }}>
           <PlaylistDialog
             visible={visible === 'DIALOG'}
             hideModal={() => setVisible('')}
@@ -79,20 +77,17 @@ export const PlayerScreen = ({ navigation }) => {
                 />
                 <Caption style={{ padding: 0, margin: 0 }}>Queue</Caption>
               </View>
-              {includes(
-                ['youtube', 'online', 'jiosaavn'],
-                active.type?.toLowerCase(),
-              ) && (
-                  <View style={styles.extraIcon}>
-                    <IconButton
-                      style={{ padding: 0, margin: 0 }}
-                      size={20}
-                      icon={props => <Icon name="download-outline" {...props} />}
-                      onPress={download}
-                    />
-                    <Caption>Download</Caption>
-                  </View>
-                )}
+              {/* {includes(['online'], active.type?.toLowerCase()) && ( */}
+              <View style={styles.extraIcon}>
+                <IconButton
+                  style={{ padding: 0, margin: 0 }}
+                  size={20}
+                  icon={props => <Icon name="download-outline" {...props} />}
+                  onPress={download}
+                />
+                <Caption>Download</Caption>
+              </View>
+              {/* )} */}
               <View style={styles.extraIcon}>
                 <FavContainer item={active} type="song" style={{ flex: 1 }} />
                 <Caption>Favorites</Caption>
