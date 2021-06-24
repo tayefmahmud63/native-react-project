@@ -113,20 +113,29 @@ export const PlaylistScreen = ({ navigation }: StackScreenProps) => {
           <List.Item
             title="Create Playlist"
             titleStyle={{ color: colors.primary, fontFamily: 'Nunito-Bold' }}
-            left={props => (
+            left={(props) => (
               <List.Icon {...props} icon="plus" color={colors.primary} />
             )}
             onPress={showDialog}
           />
         )}
-        ListFooterComponent={() => <View style={{ height: 100 }} />}
+        ListFooterComponent={() => (
+          <View style={{ marginBottom: 100 }}>
+            <List.Item
+              title={"Downloads"}
+              description={"by You"}
+              left={(props) => <List.Icon {...props} icon="save-outline" />}
+              onPress={() => navigation.navigate('Downloads')}
+            />
+          </View>
+        )}
         sections={playlists}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }: { item: PlaylistProps }) => (
           <List.Item
             title={item.name}
             description={`by ${item.owner}`}
-            left={props =>
+            left={(props) =>
               item.cover ? (
                 <FastImage
                   source={{ uri: item.cover }}
@@ -146,7 +155,8 @@ export const PlaylistScreen = ({ navigation }: StackScreenProps) => {
             <Chip
               icon="refresh-outline"
               disabled={refreshing}
-              onPress={() => refreshPlaylist(title)}>
+              onPress={() => refreshPlaylist(title)}
+            >
               Refresh
             </Chip>
           </View>

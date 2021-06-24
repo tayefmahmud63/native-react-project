@@ -7,14 +7,13 @@ import { AnyAction } from 'redux';
 import RNFS from 'react-native-fs';
 
 import { log } from '../utils/logging';
-import { addSong } from './realmAction';
 import { TrackProps } from '../utils/types';
-import { Platform } from 'react-native';
+import { downloadFolderPath } from './consts';
 
-const DOWNLOADED_ID = 'user-playlist--000004';
+// const DOWNLOADED_ID = "user-playlist--000004";
 
 export const addSongToDownloads = (song: TrackProps) => {
-  addSong(DOWNLOADED_ID, song, true);
+  // addSong(DOWNLOADED_ID, song, true);
 };
 
 export const updateQuery =
@@ -186,19 +185,14 @@ export const downloadMedia =
             'Started download. You will be notified once the file is downloaded',
           type: 'NOTIFY',
         });
-        const folderPath =
-          Platform.OS === 'ios'
-            ? `file://${RNFS.DocumentDirectoryPath}/Music`
-            : `${RNFS.ExternalStorageDirectoryPath}/Music`;
-        await checkFolderPath(folderPath);
+
+        await checkFolderPath(downloadFolderPath);
         // if (includes(['online'], item.type.toLowerCase())) {
-        const filePath = `${folderPath}/${item.title.trim()}.mp3`;
+        const filePath = `${downloadFolderPath}/${item.title.trim()}.mp3`;
         const response = await download(item.path, filePath);
         item.path = filePath;
         log.debug(`downloadMedia ${filePath}`, response.toString());
-        RNFS.readDir(folderPath).then((response) =>
-          console.log('readDir: ', response)
-        );
+
         // }
         addSongToDownloads(item);
         dispatch({

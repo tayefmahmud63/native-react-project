@@ -50,11 +50,11 @@ export const defaultDBSetup = () => {
         owner: 'Serenity',
       });
 
-      realm.create(PLAYLIST_SCHEMA_NAME, {
-        id: `${userPlaylistIdPrefix}000004`,
-        name: 'Downloads',
-        owner: 'Serenity',
-      });
+      // realm.create(PLAYLIST_SCHEMA_NAME, {
+      //   id: `${userPlaylistIdPrefix}000004`,
+      //   name: 'Downloads',
+      //   owner: 'Serenity',
+      // });
     });
   } catch (error) {
     log.error(error);
@@ -98,7 +98,7 @@ export const getQueuedSongs = () => {
   try {
     const queue = realm.objectForPrimaryKey(
       PLAYLIST_SCHEMA_NAME,
-      'user-playlist--000003',
+      'user-playlist--000003'
     );
     if (queue !== undefined) {
       return queue.songs;
@@ -114,7 +114,7 @@ export const getPlayedSongs = () => {
   try {
     const history = realm.objectForPrimaryKey(
       PLAYLIST_SCHEMA_NAME,
-      'user-playlist--000001',
+      'user-playlist--000001'
     );
     if (history !== undefined) {
       return history.songs;
@@ -130,7 +130,7 @@ export const getFavoriteSongs = () => {
   try {
     const favorites = realm.objectForPrimaryKey(
       PLAYLIST_SCHEMA_NAME,
-      favoritesPlaylist,
+      favoritesPlaylist
     );
     if (favorites !== undefined) {
       return favorites.songs;
@@ -188,7 +188,7 @@ export const unshiftSong = (id: string, song: TrackProps) => {
 export const addSong = (
   id: string,
   song: TrackProps,
-  unique: boolean = false,
+  unique: boolean = false
 ) => {
   try {
     realm.write(() => {
@@ -225,7 +225,7 @@ export const clearAllSongs = (id: string) => {
 export const isSongPresent = (id: string) => {
   const playlist = realm.objectForPrimaryKey(
     PLAYLIST_SCHEMA_NAME,
-    favoritesPlaylist,
+    favoritesPlaylist
   );
   return find(playlist.songs, { id });
 };
@@ -245,7 +245,7 @@ export const renamePlaylist = (id: string, playlistName: string) => {
         id,
         name: playlistName,
       },
-      true,
+      true
     );
   });
 };
@@ -268,7 +268,7 @@ export const removeArtist = (id: string) => {
   realm.write(() => {
     const artistObject = realm.objectForPrimaryKey(
       ARTIST_SCHEMA_NAME,
-      id.toString(),
+      id.toString()
     );
     if (artistObject) {
       realm.delete(artistObject);
@@ -300,7 +300,7 @@ export const removeAlbum = (id: string) => {
   realm.write(() => {
     const albumObject = realm.objectForPrimaryKey(
       ALBUM_SCHEMA_NAME,
-      id.toString(),
+      id.toString()
     );
     realm.delete(albumObject);
   });
