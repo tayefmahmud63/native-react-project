@@ -24,7 +24,6 @@ const publishableKey =
 
 export default function PaymentScreen() {
     const [isLoading, setIsLoading] = useState(true);
-    const [doneFreeTrial, setDoneFreeTrial] = useState(false);
     const { user } = useSelector(state => state.user);
     const [userInfo, setUserInfo] = useState();
 
@@ -35,7 +34,6 @@ export default function PaymentScreen() {
             const validTrial = moment(info.startDate).isAfter(
                 moment(info.startDate).add(30, 'days'),
             );
-            setDoneFreeTrial(validTrial);
         });
     }, []);
 
@@ -44,7 +42,12 @@ export default function PaymentScreen() {
     }
 
     return (
-        <View style={{ flex: 1, margin: 12 }}>
+        <View
+            style={{
+                flex: 1,
+                margin: 16,
+                marginTop: 34,
+            }}>
             {!userInfo.isFreeTrialCompleted ? (
                 <Card>
                     <Card.Cover source={require('../../../assets/logo.jpg')} />

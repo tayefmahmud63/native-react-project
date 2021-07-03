@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {View, ScrollView, StyleSheet, Alert} from 'react-native';
+import React, { useState } from 'react';
+import { View, ScrollView, StyleSheet, Alert } from 'react-native';
 import {
   Text,
   Switch,
@@ -10,32 +10,29 @@ import {
   Avatar,
   Banner,
 } from 'react-native-paper';
-import {useDispatch, useSelector} from 'react-redux';
-import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import { useDispatch, useSelector } from 'react-redux';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {StackScreenProps} from '@react-navigation/stack';
-import {Screen} from '../../components/Screen';
-import {updateTheme, changeRadioMode} from '../../actions';
-import {clearHistory} from '../../actions/playerState';
-import {AlertDialog} from '../../components/AlertDialog';
-import {getUser, googleSignIn, removeUserInfo} from '../../actions/userState';
-import {log} from '../../utils/logging';
-import {LoadingDialog} from '../../components/LoadingDialog';
-import {DiagnoseDialog} from './components/DiagnoseDialog';
-import moment from 'moment';
-import {useEffect} from 'react';
+import { StackScreenProps } from '@react-navigation/stack';
+import { Screen } from '../../components/Screen';
+import { updateTheme, changeRadioMode } from '../../actions';
+import { clearHistory } from '../../actions/playerState';
+import { AlertDialog } from '../../components/AlertDialog';
+import { googleSignIn, removeUserInfo } from '../../actions/userState';
+import { log } from '../../utils/logging';
+import { LoadingDialog } from '../../components/LoadingDialog';
+import { DiagnoseDialog } from './components/DiagnoseDialog';
 
-export const SettingScreen = ({navigation}: StackScreenProps) => {
+export const SettingScreen = ({ navigation }: StackScreenProps) => {
   const dispatch = useDispatch();
-  const [userInfo, setUserInfo] = useState();
   const [loading, setLoading] = useState(false);
-  const {googleAccessGiven, user} = useSelector(state => state.user);
+  const { googleAccessGiven, user } = useSelector(state => state.user);
 
   const [visible, setVisible] = useState('');
   const radio = useSelector((state: any) => state.config.radio);
   const theme = useTheme();
-  const {dark} = theme;
+  const { dark } = theme;
 
   const toggleTheme = (isDark: boolean) => {
     let themeType = 'default';
@@ -60,7 +57,7 @@ export const SettingScreen = ({navigation}: StackScreenProps) => {
       await GoogleSignin.revokeAccess();
       await GoogleSignin.signOut();
       await GoogleSignin.revokeAccess();
-      const {idToken} = await GoogleSignin.getTokens();
+      const { idToken } = await GoogleSignin.getTokens();
       await GoogleSignin.clearCachedAccessToken(idToken);
       await AsyncStorage.clear();
       dispatch(removeUserInfo());
@@ -86,13 +83,6 @@ export const SettingScreen = ({navigation}: StackScreenProps) => {
     setVisible('');
   };
 
-  useEffect(() => {
-    getUser(user).then(info => {
-      setUserInfo(info);
-      console.log(info);
-    });
-  }, []);
-
   return (
     <Screen>
       <AlertDialog
@@ -108,36 +98,12 @@ export const SettingScreen = ({navigation}: StackScreenProps) => {
       />
       <LoadingDialog visible={loading} title="Logging you out" />
       <ScrollView>
-        <Banner
-          visible={userInfo?.freeTrial}
-          actions={[
-            {
-              label: 'Learn more',
-              onPress: () => navigation.navigate('Payment'),
-            },
-          ]}
-          // icon={({ size }) => (
-          //   <Image
-          //     source={{
-          //       uri: 'https://avatars3.githubusercontent.com/u/17571969?s=400&v=4',
-          //     }}
-          //     style={{
-          //       width: size,
-          //       height: size,
-          //     }}
-          //   />
-          // )}
-        >
-          {`Your free trial will expire ${moment(userInfo?.startDate)
-            .add(30, 'days')
-            .fromNow()}`}
-        </Banner>
         <List.Item
           title={user.user.name}
           description={user.user.email}
           left={props =>
             user.user.photo ? (
-              <Avatar.Image {...props} source={{uri: user.user.photo}} />
+              <Avatar.Image {...props} source={{ uri: user.user.photo }} />
             ) : (
               <List.Icon {...props} icon="person-outline" />
             )
