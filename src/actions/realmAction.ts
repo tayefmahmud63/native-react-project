@@ -1,11 +1,11 @@
 import find from 'lodash/find';
 import realm from '../database';
 
-import { PLAYLIST_SCHEMA_NAME } from '../database/schema/PlaylistSchema';
-import { ARTIST_SCHEMA_NAME } from '../database/schema/ArtistSchema';
-import { ALBUM_SCHEMA_NAME } from '../database/schema/AlbumSchema';
-import { TrackProps, ArtistProps, AlbumProps } from '../utils/types';
-import { log } from '../utils/logging';
+import {PLAYLIST_SCHEMA_NAME} from '../database/schema/PlaylistSchema';
+import {ARTIST_SCHEMA_NAME} from '../database/schema/ArtistSchema';
+import {ALBUM_SCHEMA_NAME} from '../database/schema/AlbumSchema';
+import {TrackProps, ArtistProps, AlbumProps} from '../utils/types';
+import {log} from '../utils/logging';
 
 export const userPlaylistIdPrefix = 'user-playlist--';
 export const userSongIdPrefix = 'user-song--';
@@ -98,7 +98,7 @@ export const getQueuedSongs = () => {
   try {
     const queue = realm.objectForPrimaryKey(
       PLAYLIST_SCHEMA_NAME,
-      'user-playlist--000003'
+      'user-playlist--000003',
     );
     if (queue !== undefined) {
       return queue.songs;
@@ -114,7 +114,7 @@ export const getPlayedSongs = () => {
   try {
     const history = realm.objectForPrimaryKey(
       PLAYLIST_SCHEMA_NAME,
-      'user-playlist--000001'
+      'user-playlist--000001',
     );
     if (history !== undefined) {
       return history.songs;
@@ -130,7 +130,7 @@ export const getFavoriteSongs = () => {
   try {
     const favorites = realm.objectForPrimaryKey(
       PLAYLIST_SCHEMA_NAME,
-      favoritesPlaylist
+      favoritesPlaylist,
     );
     if (favorites !== undefined) {
       return favorites.songs;
@@ -188,14 +188,15 @@ export const unshiftSong = (id: string, song: TrackProps) => {
 export const addSong = (
   id: string,
   song: TrackProps,
-  unique: boolean = false
+  unique: boolean = false,
 ) => {
   try {
     realm.write(() => {
       const playlist = realm.objectForPrimaryKey(PLAYLIST_SCHEMA_NAME, id);
       if (playlist !== undefined) {
+        const songId = song?.id || song?.key;
         playlist.songs.push({
-          id: unique ? song.id : generateSongId(),
+          id: unique ? songId : generateSongId(),
           title: song.title,
           cover: song.cover,
           artist: song.artist,
@@ -225,9 +226,9 @@ export const clearAllSongs = (id: string) => {
 export const isSongPresent = (id: string) => {
   const playlist = realm.objectForPrimaryKey(
     PLAYLIST_SCHEMA_NAME,
-    favoritesPlaylist
+    favoritesPlaylist,
   );
-  return find(playlist.songs, { id });
+  return find(playlist.songs, {id});
 };
 
 export const deletePlaylist = (id: string) => {
@@ -245,7 +246,7 @@ export const renamePlaylist = (id: string, playlistName: string) => {
         id,
         name: playlistName,
       },
-      true
+      true,
     );
   });
 };
@@ -268,7 +269,7 @@ export const removeArtist = (id: string) => {
   realm.write(() => {
     const artistObject = realm.objectForPrimaryKey(
       ARTIST_SCHEMA_NAME,
-      id.toString()
+      id.toString(),
     );
     if (artistObject) {
       realm.delete(artistObject);
@@ -300,7 +301,7 @@ export const removeAlbum = (id: string) => {
   realm.write(() => {
     const albumObject = realm.objectForPrimaryKey(
       ALBUM_SCHEMA_NAME,
-      id.toString()
+      id.toString(),
     );
     realm.delete(albumObject);
   });

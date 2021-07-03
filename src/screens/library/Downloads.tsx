@@ -20,7 +20,7 @@ function parseSongs(response) {
         const song = {};
         song.id = each.mtime;
         song.title = decodeURI(each.name);
-        song.path = each.path;
+        song.path = `file://${each.path}`;
         song.album = 'Downloads';
         songs.push(song);
     }
@@ -39,8 +39,8 @@ export function DownloadScreen({ }: DownloadScreenProps) {
 
     useEffect(() => {
         listDownloads()
-            .then((response) => parseSongs(response))
-            .then((tracks) => setSongs(tracks));
+            .then(response => parseSongs(response))
+            .then(tracks => setSongs(tracks));
     });
 
     function onRefresh() {
@@ -55,8 +55,8 @@ export function DownloadScreen({ }: DownloadScreenProps) {
                             <DefaultImage style={styles.artCover} />
                         </View>
                         <View style={styles.titleContainer}>
-                            <Title>{"Downloads"}</Title>
-                            <Subheading>{"by You"}</Subheading>
+                            <Title>{'Downloads'}</Title>
+                            <Subheading>{'by You'}</Subheading>
                         </View>
                         <View style={styles.buttonContainer}>
                             <Button mode="contained" onPress={addSongToQueue}>

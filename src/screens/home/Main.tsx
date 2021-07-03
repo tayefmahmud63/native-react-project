@@ -9,12 +9,14 @@ import OnlineContainer from '../../containers/OnlineContainer';
 import { Screen } from '../../components/Screen';
 import { ShortCutContainer } from '../../containers/ShortcutContainer';
 import OnlineSongsContainer from '../../containers/OnlineSongsContainer';
+import { PlaylistList } from './components/PlaylistList';
 
 const Divider = () => <View style={{ marginVertical: 8 }} />;
 
 export const MainScreen = () => {
   const ref = useRef();
   useScrollToTop(ref);
+
   return (
     <Screen>
       <ScrollView ref={ref}>
@@ -25,6 +27,8 @@ export const MainScreen = () => {
         <RecentContainer />
         <Divider />
         <MostPlayedContainer />
+        <Divider />
+        <PlaylistList />
         <Divider />
         <OnlineSongsContainer />
         <Divider />

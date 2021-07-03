@@ -1,11 +1,11 @@
-import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
-import { useTheme, IconButton } from "react-native-paper";
-import { MainScreen } from "./Main";
-import { SettingScreen } from "./Settings";
-import { SongsList } from "../shared/SongsList";
-import { getGreetingTime } from "../../utils/greeting";
-import PaymentScreen from "../payment/Payment";
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
+import { useTheme, IconButton } from 'react-native-paper';
+import { MainScreen } from './Main';
+import { SettingScreen } from './Settings';
+import { SongsList } from '../shared/SongsList';
+import { getGreetingTime } from '../../utils/greeting';
+import { SongList } from './SongList';
 
 const Stack = createStackNavigator();
 
@@ -24,18 +24,17 @@ const HomeStack = () => {
           <IconButton style={{ marginLeft: 0 }} icon="arrow-back" />
         ),
         headerBackTitleVisible: false,
-      }}
-    >
+      }}>
       <Stack.Screen
         name="Home"
         component={MainScreen}
         options={({ navigation }) => ({
           headerTitle: getGreetingTime(),
-          headerTitleStyle: { fontFamily: "Nunito-ExtraBold", fontSize: 24 },
+          headerTitleStyle: { fontFamily: 'Nunito-ExtraBold', fontSize: 24 },
           headerRight: () => (
             <IconButton
               icon="settings-outline"
-              onPress={() => navigation.navigate("Settings")}
+              onPress={() => navigation.navigate('Settings')}
             />
           ),
         })}
@@ -44,18 +43,19 @@ const HomeStack = () => {
         name="Settings"
         component={SettingScreen}
         options={{
-          headerTitleAlign: "center",
-          headerTitle: "Settings",
+          headerTitleAlign: 'center',
+          headerTitle: 'Settings',
         }}
       />
       <Stack.Screen
-        name="Payment"
-        component={PaymentScreen}
+        name="SongList"
+        component={SongList}
         options={{
-          headerTitleAlign: "center",
-          headerTitle: "Subscription Plan",
+          headerTitleAlign: 'center',
+          headerTitle: 'Settings',
         }}
       />
+
       <Stack.Screen name="Playlist" component={SongsList} />
     </Stack.Navigator>
   );

@@ -88,17 +88,23 @@ export const loadTrack =
     async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
       try {
         TrackPlayer.reset();
-        const { path } = track;
-        let audioUrl = path;
-        log.debug('loadTrack', `load track: ${track.path}`);
+        let audioUrl = track.path;
 
-        if (path) {
+        if (audioUrl) {
           dispatch({
             track,
             type: 'LOAD',
           });
-          track.url = audioUrl;
-          await TrackPlayer.add([track]);
+
+          const song = {
+            id: track.id || track.key,
+            url: audioUrl,
+            artwork: track.cover,
+            title: track.title,
+            artist: track.artist,
+          };
+          console.log(song);
+          await TrackPlayer.add([song]);
           if (playOnLoad) {
             TrackPlayer.play();
           }

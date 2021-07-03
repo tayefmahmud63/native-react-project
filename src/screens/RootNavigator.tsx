@@ -18,6 +18,7 @@ import LaunchScreen from './launch/Launch';
 import { PlayerStack } from './player';
 import { FindScreen } from './shared/Find';
 import { Header } from '../components/Header';
+import PaymentScreen from './payment/Payment';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -27,10 +28,7 @@ const BottomNavigator = () => {
   const theme = useTheme();
   const { colors } = theme;
   const activeTintColor = colors.primary;
-  const inactiveTintColor = color(colors.text)
-    .alpha(0.5)
-    .rgb()
-    .string();
+  const inactiveTintColor = color(colors.text).alpha(0.5).rgb().string();
 
   return (
     <Tab.Navigator
@@ -41,8 +39,7 @@ const BottomNavigator = () => {
         style: { backgroundColor: colors.surface },
         activeTintColor,
         inactiveTintColor,
-      }}
-    >
+      }}>
       <Tab.Screen
         name="Home"
         component={HomeStack}
@@ -133,11 +130,18 @@ const AuthStack = () => {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="Launch"
-    >
+      initialRouteName="Launch">
       <NativeStack.Screen name="App" component={RootStack} />
       <NativeStack.Screen name="Intro" component={IntroductionScreen} />
       <NativeStack.Screen name="Launch" component={LaunchScreen} />
+      <Stack.Screen
+        name="Payment"
+        component={PaymentScreen}
+        options={{
+          headerTitleAlign: 'center',
+          headerTitle: 'Subscription Plan',
+        }}
+      />
     </NativeStack.Navigator>
   );
 };
