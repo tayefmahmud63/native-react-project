@@ -66,7 +66,11 @@ export const SongList = ({ route, navigation }) => {
   }, []);
 
   if (loading) {
-    return <ActivityIndicator />;
+    return (
+      <View style={{ flex: 1 }}>
+        <ActivityIndicator />
+      </View>
+    );
   }
 
   const addSongToQueue = () => {
