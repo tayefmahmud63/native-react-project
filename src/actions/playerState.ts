@@ -1,10 +1,10 @@
-import { EmitterSubscription } from 'react-native';
+import {EmitterSubscription, Platform} from 'react-native';
 import head from 'lodash/head';
 import isEmpty from 'lodash/isEmpty';
 import sample from 'lodash/sample';
 
-import { ThunkDispatch } from 'redux-thunk';
-import { AnyAction } from 'redux';
+import {ThunkDispatch} from 'redux-thunk';
+import {AnyAction} from 'redux';
 import {
   addSong,
   removeSong,
@@ -15,9 +15,9 @@ import {
   removeAlbum,
   unshiftSong,
 } from './realmAction';
-import { deserializeSongs } from '../utils/database';
-import { log } from '../utils/logging';
-import { TrackProps, AlbumProps } from '../utils/types';
+import {deserializeSongs} from '../utils/database';
+import {log} from '../utils/logging';
+import {TrackProps, AlbumProps} from '../utils/types';
 import TrackPlayer, {
   STATE_BUFFERING,
   STATE_PAUSED,
@@ -55,7 +55,7 @@ export const setUpTrackPlayer =
       TrackPlayer.setupPlayer();
       subscription = TrackPlayer.addEventListener('playback-state', event => {
         // handle event
-        const { state } = event;
+        const {state} = event;
         if (state === STATE_PLAYING) {
           dispatch({
             status: 'playing',
@@ -85,53 +85,56 @@ export const setUpTrackPlayer =
 
 export const loadTrack =
   (track: TrackProps, playOnLoad = true) =>
-    async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
-      try {
-        TrackPlayer.reset();
-        let audioUrl = track.path;
-
-        if (audioUrl) {
-          dispatch({
-            track,
-            type: 'LOAD',
-          });
-
-          const song = {
-            id: track.id || track.key,
-            url: audioUrl,
-            artwork: track.cover,
-            title: track.title,
-            artist: track.artist,
-          };
-          console.log(song);
-          await TrackPlayer.add([song]);
-          if (playOnLoad) {
-            TrackPlayer.play();
-          }
-        } else {
-          log.debug(
-            'loadTrack',
-            `path does not exist for track track: ${track.title} `,
-          );
-        }
-      } catch (error) {
-        log.error('loadTrack', error);
+  async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
+    try {
+      TrackPlayer.reset();
+      let audioUrl = track.path;
+      if (Platform.OS === 'ios') {
+        audioUrl = 'file://' + audioUrl;
       }
-    };
+
+      if (audioUrl) {
+        dispatch({
+          track,
+          type: 'LOAD',
+        });
+
+        const song = {
+          id: track?.id,
+          url: audioUrl,
+          artwork: track?.cover,
+          title: track.title,
+          artist: track.artist || 'Unknown Artist',
+        };
+        console.log(song);
+        await TrackPlayer.add([song]);
+        if (playOnLoad) {
+          TrackPlayer.play();
+        }
+      } else {
+        log.debug(
+          'loadTrack',
+          `path does not exist for track track: ${track.title} `,
+        );
+      }
+    } catch (error) {
+      log.error('loadTrack', error);
+    }
+  };
 
 export const playNext =
   (track: TrackProps) =>
-    (dispatch: ThunkDispatch<undefined, undefined, AnyAction>, getState) => {
-      try {
-        unshiftSong(QUEUE_ID, track);
-        if (isEmpty(getState().playerState.active)) {
-          const queue = getQueuedSongs();
-          dispatch(loadTrack(head(queue)));
-        }
-      } catch (error) {
-        log.error('playNext', error);
+  (dispatch: ThunkDispatch<undefined, undefined, AnyAction>, getState) => {
+    try {
+      unshiftSong(QUEUE_ID, track);
+      if (isEmpty(getState().playerState.active)) {
+        const queue = getQueuedSongs();
+        dispatch(loadTrack(head(queue)));
       }
-    };
+    } catch (error) {
+      log.error('playNext', error);
+    }
+  };
 
 export const repeatSongs =
   (type: string) => (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
@@ -178,7 +181,7 @@ export const skipToNext =
     try {
       const queue = deserializeSongs(getQueuedSongs());
       let track = null;
-      const { config } = getState();
+      const {config} = getState();
       if (config.repeat === 'repeat-one') {
         const playedTrack = getState().playerState.active;
         addSong(HISTORY_ID, playedTrack);
@@ -246,27 +249,27 @@ export const destroyTrackPlayer =
 
 export const addToQueue =
   (songs: TrackProps[] | TrackProps) =>
-    (dispatch: ThunkDispatch<{}, {}, AnyAction>, getState) => {
-      if (Array.isArray(songs)) {
-        songs.forEach(song => {
-          addSong(QUEUE_ID, song, true);
-          TrackPlayer.add([song]);
-        });
-      } else {
-        addSong(QUEUE_ID, songs, true);
-        TrackPlayer.add(songs);
-      }
+  (dispatch: ThunkDispatch<{}, {}, AnyAction>, getState) => {
+    if (Array.isArray(songs)) {
+      songs.forEach(song => {
+        addSong(QUEUE_ID, song, true);
+        TrackPlayer.add([song]);
+      });
+    } else {
+      addSong(QUEUE_ID, songs, true);
+      TrackPlayer.add(songs);
+    }
 
-      if (isEmpty(getState().playerState.active)) {
-        const queue = getQueuedSongs();
-        dispatch(loadTrack(head(queue)));
-      } else {
-        dispatch({
-          payload: `Added ${songs.length || songs.title} songs to queue`,
-          type: 'NOTIFY',
-        });
-      }
-    };
+    if (isEmpty(getState().playerState.active)) {
+      const queue = getQueuedSongs();
+      dispatch(loadTrack(head(queue)));
+    } else {
+      dispatch({
+        payload: `Added ${songs.length || songs.title} songs to queue`,
+        type: 'NOTIFY',
+      });
+    }
+  };
 
 export const removeFromQueue =
   (song: TrackProps) => (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
@@ -317,13 +320,13 @@ export const removeAlbumFromFavorite =
 
 export const addToPlaylist =
   (id: string, song: TrackProps) =>
-    (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
-      addSong(id, song);
-      dispatch({
-        payload: 'Added to the playlist',
-        type: 'NOTIFY',
-      });
-    };
+  (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
+    addSong(id, song);
+    dispatch({
+      payload: 'Added to the playlist',
+      type: 'NOTIFY',
+    });
+  };
 
 export const clearHistory =
   () => (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {

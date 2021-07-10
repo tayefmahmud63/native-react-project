@@ -5,6 +5,7 @@ import orderBy from 'lodash/orderBy';
 import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';
 import RNFS from 'react-native-fs';
+import { Platform } from 'react-native';
 
 import { log } from '../utils/logging';
 import { TrackProps } from '../utils/types';
@@ -49,7 +50,7 @@ export const updateQuery =
 export const getOfflineSongs =
   () => (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     RNAndroidAudioStore.getAll({})
-      .then((media) => {
+      .then(media => {
         if (media === 'Something get wrong with musicCursor') {
           media = [];
         }
@@ -58,7 +59,7 @@ export const getOfflineSongs =
           payload: media,
         });
       })
-      .catch((er) => {
+      .catch(er => {
         log.error('getOfflineSongs', er);
         dispatch({
           type: 'OFFLINE_SONGS',
@@ -70,13 +71,13 @@ export const getOfflineSongs =
 export const getOfflineArtists =
   () => (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     RNAndroidAudioStore.getArtists({})
-      .then((media) => {
+      .then(media => {
         dispatch({
           type: 'OFFLINE_ARTISTS',
           payload: media,
         });
       })
-      .catch((er) => {
+      .catch(er => {
         log.error('getOfflineArtists', er);
         dispatch({
           type: 'NOTIFY',
@@ -88,13 +89,13 @@ export const getOfflineArtists =
 export const getOfflineAlbums =
   () => (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     RNAndroidAudioStore.getAlbums({})
-      .then((media) => {
+      .then(media => {
         dispatch({
           type: 'OFFLINE_ALBUMS',
           payload: media,
         });
       })
-      .catch((er) => {
+      .catch(er => {
         log.error('getOfflineAlbums', er);
         dispatch({
           type: 'NOTIFY',
@@ -107,8 +108,8 @@ export const findAlbumSongs = async (album: string) => {
   const songs = await RNAndroidAudioStore.getSongs({
     album,
   })
-    .then((media) => media)
-    .catch((er) => log.error('findAlbumSongs', er));
+    .then(media => media)
+    .catch(er => log.error('findAlbumSongs', er));
   return songs;
 };
 
@@ -116,8 +117,8 @@ export const findArtistSongs = async (artist: string) => {
   const songs = await RNAndroidAudioStore.getSongs({
     artist,
   })
-    .then((media) => media)
-    .catch((er) => log.error('findArtistSongs', er));
+    .then(media => media)
+    .catch(er => log.error('findArtistSongs', er));
   return songs;
 };
 
@@ -132,13 +133,13 @@ export const filterSongsByGenre = async (genre: string) => {
 
 export const mostPlayedSongs = (array: []) => {
   return orderBy(
-    values(groupBy(array, 'title')).map((group) => ({
+    values(groupBy(array, 'title')).map(group => ({
       ...group[0],
       count: group.length,
-    }))
+    })),
   );
 };
-const _downloadFileProgress = (data) => {
+const _downloadFileProgress = data => {
   const percentage = ((100 * data.bytesWritten) / data.contentLength) | 0;
   const text = `Progress ${percentage}%`;
   console.log('download file progress: ', text);
@@ -147,10 +148,14 @@ const _downloadFileProgress = (data) => {
 };
 
 function download(url: string, filePath: string) {
+  // if (Platform.OS === 'ios') {
+  //   filePath = 'file://' + filePath;
+  // }
+  console.log(encodeURI(filePath), encodeURI(url));
   const { promise } = RNFS.downloadFile({
     fromUrl: url,
     toFile: encodeURI(filePath),
-    progress: (data) => _downloadFileProgress(data),
+    progress: data => _downloadFileProgress(data),
   });
   return promise;
 }
@@ -190,11 +195,12 @@ export const downloadMedia =
         // if (includes(['online'], item.type.toLowerCase())) {
         const filePath = `${downloadFolderPath}/${item.title.trim()}.mp3`;
         const response = await download(item.path, filePath);
-        item.path = filePath;
-        log.debug(`downloadMedia ${filePath}`, response.toString());
+        // item.path = filePath;
+        console.log(response);
+        log.debug('downloadMedia', filePath);
 
         // }
-        addSongToDownloads(item);
+        // addSongToDownloads(item);
         dispatch({
           payload: `File ${item.title} downloaded successfully`,
           type: 'NOTIFY',

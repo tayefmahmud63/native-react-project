@@ -39,8 +39,6 @@ export function PlaylistList(props: PlaylistListProps) {
     return <ActivityIndicator />;
   }
 
-  console.log(playlists);
-
   function navigateToPlaylist(playlist) {
     console.log('navigate');
     navigation.navigate('SongList', {

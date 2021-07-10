@@ -10,17 +10,25 @@ import { addToQueue } from '../../actions/playerState';
 import { DefaultImage } from '../../components/DefaultImage';
 import { TrackContainer } from '../../containers/TrackContainer';
 import { TrackProps } from '../../utils/types';
+// import RNFS from 'react-native-fs';
 
 export interface DownloadScreenProps { }
 
-function parseSongs(response) {
+async function parseSongs(response) {
+  console.log(response);
   const songs = [];
   for (const index in response) {
     const each = response[index];
     const song = {};
+    // const data = await RNFS.stat(each.path);
+    // const data = await RNFS.readFile(
+    //   'file:///data/user/0/com.vybez/files/Music/Counting%20Stars.mp3',
+    //   'base64',
+    // );
+    console.log('data', each.isFile());
     song.id = each.mtime;
     song.title = decodeURI(each.name);
-    song.path = `file://${each.path}`;
+    song.path = each.path;
     song.album = 'Downloads';
     songs.push(song);
   }
@@ -52,6 +60,17 @@ export function DownloadScreen({ }: DownloadScreenProps) {
 
   function onRefresh() {
     setRefreshing(true);
+    listDownloads()
+      .then(response => parseSongs(response))
+      .then(tracks => {
+        console.log('tracks', tracks);
+        setSongs(tracks);
+        setRefreshing(false);
+      })
+      .catch(error => {
+        console.log(error);
+        setRefreshing(false);
+      });
   }
   return (
     <View style={{ flex: 1 }}>
@@ -83,7 +102,6 @@ export function DownloadScreen({ }: DownloadScreenProps) {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       />
-      <Text>DownloadScreen</Text>
     </View>
   );
 }

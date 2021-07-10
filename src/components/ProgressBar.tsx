@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import TrackPlayer, { useTrackPlayerProgress } from 'react-native-track-player';
 import Slider from '@react-native-community/slider';
-import { useTheme } from 'react-native-paper';
+import { Caption, useTheme } from 'react-native-paper';
+import moment from 'moment';
 
 export const Progress = () => {
   const { colors } = useTheme();
@@ -29,6 +30,17 @@ export const Progress = () => {
       // style={{ height: 6 }}
       // buffered={this.getBufferedProgress()}
       />
+      <View
+        style={{
+          width: '100%',
+          height: 20,
+          justifyContent: 'space-between',
+          flexDirection: 'row',
+          paddingHorizontal: 8,
+        }}>
+        <Caption>{moment.utc(position * 1000).format('mm:ss')}</Caption>
+        <Caption>{moment.utc(duration * 1000).format('mm:ss')}</Caption>
+      </View>
     </View>
   );
 };

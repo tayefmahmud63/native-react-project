@@ -2,7 +2,8 @@ export interface TrackProps {
   artist?: string;
   album?: string;
   cover: string;
-  id: string;
+  id?: string;
+  key?: string;
   path: string;
   title: string;
   type?: string;
