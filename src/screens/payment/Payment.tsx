@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { StripeProvider, useConfirmPayment } from '@stripe/stripe-react-native';
-import { CardField } from '@stripe/stripe-react-native';
+import React, {useEffect, useState} from 'react';
+import {StripeProvider, useConfirmPayment} from '@stripe/stripe-react-native';
+import {CardField} from '@stripe/stripe-react-native';
 import {
   ActivityIndicator,
   Button,
@@ -12,25 +12,21 @@ import {
   Portal,
   TextInput,
 } from 'react-native-paper';
-import { Screen } from '../../components/Screen';
-import { Alert, View } from 'react-native';
-import { Title } from '../../components/Title';
+import {Screen} from '../../components/Screen';
+import {Alert, View} from 'react-native';
+import {Title} from '../../components/Title';
 import Config from 'react-native-config';
-import { useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
 import moment from 'moment';
-import { getUser, startFreeTrial } from '../../actions/userState';
+import {getUser, startFreeTrial} from '../../actions/userState';
 var Color = require('color');
 
-const publishableKey =
-  Config.STRIPE_KEY ||
-  'pk_test_51J2sxSA7x9UAPSqCbnfBfSQMl9lk7eWEaR6WOcdR4az9PUzT3VuFNg8akrqpkw0tS6m5JjBGtmjE9CzN6H2uZPN1005IQ4kdp1';
+const publishableKey = Config.STRIPE_KEY;
+const secretKey = Config.STRIPE_SECRET_KEY;
 
-const secretKey =
-  'sk_test_51J2sxSA7x9UAPSqCjBcCjmG4V2IFOgnm1Jm6ZFKt8kDv260IOnrjW6vGTWL0G0RFp1AnzAr3W46IXSrXPIMno1Ji001h1AzTCG';
-
-export default function PaymentScreen({ navigation }) {
+export default function PaymentScreen({navigation}) {
   const [isLoading, setIsLoading] = useState(true);
-  const { user } = useSelector(state => state.user);
+  const {user} = useSelector(state => state.user);
   const [userInfo, setUserInfo] = useState();
 
   const [visible, setVisible] = React.useState(false);
@@ -59,7 +55,7 @@ export default function PaymentScreen({ navigation }) {
 
   if (isLoading) {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <ActivityIndicator />
       </View>
     );
@@ -88,7 +84,7 @@ export default function PaymentScreen({ navigation }) {
           <Card>
             <Card.Cover source={require('../../../assets/logo.jpg')} />
             <Card.Content
-              style={{ justifyContent: 'center', alignItems: 'center' }}>
+              style={{justifyContent: 'center', alignItems: 'center'}}>
               {userInfo.isFreeTrialStarted ? (
                 <Title>{`Free trial will expire ${moment(userInfo?.startDate)
                   .add(30, 'days')
@@ -100,13 +96,13 @@ export default function PaymentScreen({ navigation }) {
             </Card.Content>
 
             <Card.Actions
-              style={{ justifyContent: 'center', alignItems: 'center' }}>
+              style={{justifyContent: 'center', alignItems: 'center'}}>
               <Button mode="contained" onPress={getStarted}>
                 Subscribe Now
               </Button>
             </Card.Actions>
           </Card>
-          <View style={{ marginTop: 12 }}>
+          <View style={{marginTop: 12}}>
             <Title>Explanation:</Title>
             <Paragraph>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed
@@ -131,17 +127,17 @@ export default function PaymentScreen({ navigation }) {
 
 function Payment() {
   const [name, setName] = useState();
-  const { confirmPayment, loading } = useConfirmPayment();
-  const { colors } = useTheme();
+  const {confirmPayment, loading} = useConfirmPayment();
+  const {colors} = useTheme();
 
   const openPaymentSheet = async () => {
     if (!secretKey) {
       return;
     }
 
-    const { error, paymentIntent } = await confirmPayment(secretKey, {
+    const {error, paymentIntent} = await confirmPayment(secretKey, {
       type: 'Card',
-      billingDetails: { name },
+      billingDetails: {name},
     });
 
     if (error) {
@@ -156,10 +152,10 @@ function Payment() {
 
   return (
     <Screen>
-      <View style={{ flex: 1 }}>
+      <View style={{flex: 1}}>
         <View>
           <Card>
-            <Card.Content style={{ margin: 12 }}>
+            <Card.Content style={{margin: 12}}>
               <Headline>Subscribe</Headline>
               <Paragraph>
                 Your subscription has expired. Please resume using application
@@ -169,7 +165,7 @@ function Payment() {
                 value={name}
                 placeholder="Name"
                 onChange={e => setName(e.nativeEvent.text)}
-                style={{ marginBottom: 8 }}
+                style={{marginBottom: 8}}
               />
               <CardField
                 postalCodeEnabled={true}
@@ -192,7 +188,7 @@ function Payment() {
               <Button
                 mode="contained"
                 disabled={loading}
-                style={{ flex: 1 }}
+                style={{flex: 1}}
                 onPress={() => openPaymentSheet()}>
                 Checkout
               </Button>
