@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { StripeProvider } from '@stripe/stripe-react-native';
-import { CardField, useStripe } from '@stripe/stripe-react-native';
+import { StripeProvider, useConfirmPayment } from '@stripe/stripe-react-native';
+import { CardField } from '@stripe/stripe-react-native';
 import {
   ActivityIndicator,
   Button,
@@ -10,6 +10,7 @@ import {
   useTheme,
   Dialog,
   Portal,
+  TextInput,
 } from 'react-native-paper';
 import { Screen } from '../../components/Screen';
 import { Alert, View } from 'react-native';
@@ -82,7 +83,7 @@ export default function PaymentScreen({ navigation }) {
           </Dialog.Actions>
         </Dialog>
       </Portal>
-      {!userInfo.isFreeTrialCompleted ? (
+      {!userInfo.isFreeTrialCompleted && !userInfo.isFreeTrialStarted ? (
         <View>
           <Card>
             <Card.Cover source={require('../../../assets/logo.jpg')} />
@@ -129,35 +130,27 @@ export default function PaymentScreen({ navigation }) {
 // PaymentScreen.ts
 
 function Payment() {
-  const [card, setCard] = useState();
-  const { initPaymentSheet, presentPaymentSheet } = useStripe();
+  const [name, setName] = useState();
+  const { confirmPayment, loading } = useConfirmPayment();
   const { colors } = useTheme();
-
-  useEffect(() => {
-    initPaymentSheet({
-      customerId: '',
-      customerEphemeralKeySecret: publishableKey,
-      paymentIntentClientSecret: secretKey,
-      customFlow: false,
-      merchantDisplayName: 'Example Inc.',
-      style: 'alwaysDark',
-    })
-      .then(response => console.log('init', response))
-      .catch(err => console.log(err));
-  }, []);
 
   const openPaymentSheet = async () => {
     if (!secretKey) {
       return;
     }
-    const { error } = await presentPaymentSheet({
-      clientSecret: secretKey,
+
+    const { error, paymentIntent } = await confirmPayment(secretKey, {
+      type: 'Card',
+      billingDetails: { name },
     });
 
     if (error) {
       Alert.alert(`Error code: ${error.code}`, error.message);
-    } else {
-      Alert.alert('Success', 'The payment was confirmed successfully');
+    } else if (paymentIntent) {
+      Alert.alert(
+        'Success',
+        `The payment was confirmed successfully ${paymentIntent.id}`,
+      );
     }
   };
 
@@ -166,8 +159,19 @@ function Payment() {
       <View style={{ flex: 1 }}>
         <View>
           <Card>
-            <View style={{ margin: 12 }}>
-              {/* <CardField
+            <Card.Content style={{ margin: 12 }}>
+              <Headline>Subscribe</Headline>
+              <Paragraph>
+                Your subscription has expired. Please resume using application
+                by paying $2 to continue
+              </Paragraph>
+              <TextInput
+                value={name}
+                placeholder="Name"
+                onChange={e => setName(e.nativeEvent.text)}
+                style={{ marginBottom: 8 }}
+              />
+              <CardField
                 postalCodeEnabled={true}
                 placeholder={{
                   number: '4242 4242 4242 4242',
@@ -182,25 +186,17 @@ function Payment() {
                   width: '100%',
                   height: 50,
                 }}
-                onCardChange={cardDetails => {
-                  console.log('cardDetails', cardDetails);
-                  setCard(cardDetails);
-                }}
-                onFocus={focusedField => {
-                  console.log('focusField', focusedField);
-                }}
-              /> */}
-              <Paragraph>
-                Your subscription has expired. Please resume using application
-                by paying $2 to continue
-              </Paragraph>
+              />
+            </Card.Content>
+            <Card.Actions>
               <Button
                 mode="contained"
-                // disabled={!card}
+                disabled={loading}
+                style={{ flex: 1 }}
                 onPress={() => openPaymentSheet()}>
                 Checkout
               </Button>
-            </View>
+            </Card.Actions>
           </Card>
         </View>
       </View>
