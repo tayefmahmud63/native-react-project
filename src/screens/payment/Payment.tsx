@@ -147,6 +147,7 @@ function Payment() {
         'Success',
         `The payment was confirmed successfully ${paymentIntent.id}`,
       );
+      
     }
   };
 
