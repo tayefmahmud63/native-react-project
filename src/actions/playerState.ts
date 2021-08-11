@@ -89,7 +89,7 @@ export const loadTrack =
       try {
         TrackPlayer.reset();
         let audioUrl = track.path;
-        if (Platform.OS === 'ios' && track.path.includes('https://')) {
+        if (Platform.OS === 'ios' && !track.path.includes('https://')) {
           audioUrl = 'file://' + audioUrl;
         }
 
