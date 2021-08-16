@@ -5,26 +5,20 @@ import { FlatList, StyleSheet, RefreshControl } from 'react-native';
 import { Text, View } from 'react-native';
 import { Button, Divider, Subheading, Title } from 'react-native-paper';
 import { useDispatch } from 'react-redux';
-import { listDownloads } from '../../actions/downloads';
+import { deleteDownload, listDownloads } from '../../actions/downloads';
 import { addToQueue } from '../../actions/playerState';
 import { DefaultImage } from '../../components/DefaultImage';
-import { TrackContainer } from '../../containers/TrackContainer';
+import { TrackItem } from './components/TrackItem';
 import { TrackProps } from '../../utils/types';
 // import RNFS from 'react-native-fs';
 
 export interface DownloadScreenProps { }
 
 async function parseSongs(response) {
-  console.log(response);
   const songs = [];
   for (const index in response) {
     const each = response[index];
     const song = {};
-    // const data = await RNFS.stat(each.path);
-    // const data = await RNFS.readFile(
-    //   'file:///data/user/0/com.vybez/files/Music/Counting%20Stars.mp3',
-    //   'base64',
-    // );
     console.log('data', each.isFile());
     song.id = each.mtime;
     song.title = decodeURI(each.name);
@@ -72,6 +66,16 @@ export function DownloadScreen({ }: DownloadScreenProps) {
         setRefreshing(false);
       });
   }
+
+
+  function deleteMedia(track: TrackProps) {
+    deleteDownload(track.path);
+    setRefreshing(true);
+    setTimeout(() => {
+      onRefresh();
+    }, 2000);
+  };
+
   return (
     <View style={{ flex: 1 }}>
       <FlatList
@@ -93,7 +97,7 @@ export function DownloadScreen({ }: DownloadScreenProps) {
         )}
         data={songs}
         renderItem={({ item }: { item: TrackProps }) => (
-          <TrackContainer track={item} />
+          <TrackItem track={item} onRightIconPress={deleteMedia} />
         )}
         ItemSeparatorComponent={() => <Divider inset />}
         keyExtractor={(item, index) => index.toString()}

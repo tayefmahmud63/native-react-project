@@ -151,10 +151,9 @@ function download(url: string, filePath: string) {
   // if (Platform.OS === 'ios') {
   //   filePath = 'file://' + filePath;
   // }
-  console.log(encodeURI(filePath), encodeURI(url));
   const { promise } = RNFS.downloadFile({
     fromUrl: url,
-    toFile: encodeURI(filePath),
+    toFile: filePath,
     progress: data => _downloadFileProgress(data),
   });
   return promise;
@@ -193,7 +192,8 @@ export const downloadMedia =
 
         await checkFolderPath(downloadFolderPath);
         // if (includes(['online'], item.type.toLowerCase())) {
-        const filePath = `${downloadFolderPath}/${item.title.trim()}.mp3`;
+        let fileName = item.title.replace(/\s+/g, '-').toLowerCase();
+        const filePath = `${downloadFolderPath}/${fileName}.mp3`;
         const response = await download(item.path, filePath);
         // item.path = filePath;
         console.log(response);
