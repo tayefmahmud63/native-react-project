@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import TrackPlayer, { useTrackPlayerProgress } from 'react-native-track-player';
+import TrackPlayer, { useProgress } from 'react-native-track-player';
 import Slider from '@react-native-community/slider';
 import { Caption, useTheme } from 'react-native-paper';
 import moment from 'moment';
@@ -9,7 +9,7 @@ export const Progress = () => {
   const { colors } = useTheme();
   const [isSeeking, setIsSeeking] = useState(false);
   const [seek, setSeek] = useState(0);
-  const progress = useTrackPlayerProgress();
+  const progress = useProgress();
   const { duration, position } = progress;
   return (
     <View style={{ flex: 1, width: '100%' }}>

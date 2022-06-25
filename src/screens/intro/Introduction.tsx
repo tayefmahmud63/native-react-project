@@ -57,15 +57,15 @@ const data = [
   //   color: '#6C63FF',
   //   icon: "color-palette-outline"
   // },
-  // {
-  //   type: 'Ready',
-  //   imageUri: Images.readyImage,
-  //   heading: "Let's Go",
-  //   description: 'Introduction is over Enjoy Serenity!',
-  //   key: 'fourth',
-  //   color: '#00BFA6',
-  //   icon: 'done-outline',
-  // },
+  {
+    type: 'Ready',
+    imageUri: Images.readyImage,
+    heading: "Let's Go",
+    description: 'Introduction is over Enjoy Serenity!',
+    key: 'fourth',
+    color: '#00BFA6',
+    icon: 'done-outline',
+  },
 ];
 const { width, height } = Dimensions.get('window');
 const LOGO_WIDTH = 220;

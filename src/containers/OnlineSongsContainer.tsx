@@ -1,29 +1,49 @@
-import React from 'react';
+import * as React from 'react';
 import { View } from 'react-native';
 import { useNetInfo } from '@react-native-community/netinfo';
 import { useNavigation } from '@react-navigation/core';
-import * as data from '../assets/Media.json';
 import { TrackScrollView } from '../components/TrackScrollView';
 import { Headline } from '../components/Headline';
 
+import { DataStore } from '@aws-amplify/datastore';
+import { Album, Song } from '../models';
+
 const OnlineSongsContainer = () => {
+  const [media, setMedia] = React.useState([]);  
   const netInfo = useNetInfo();
   const navigation = useNavigation();
 
-  const navigateToPlaylist = (playlist: any) => {
+  const navigateToPlaylist = async (playlist: any) => {
+    const songs = (await DataStore.query(Song)).filter(song => song.albumID === playlist.id);
     const playlistMetadata = {
-      id: 'online-playlist--000002',
+      id: playlist.id,
       name: playlist.title,
       owner: 'Serenity',
       cover: playlist.cover,
     };
     navigation.navigate('Playlist', {
       playlist: playlistMetadata,
-      songs: playlist.children,
+      songs: songs,
     });
   };
 
-  const { media } = data;
+  React.useEffect(() => {
+
+    //query the initial todolist and subscribe to data updates
+    const subscription = DataStore.observeQuery(Album).subscribe((snapshot) => {
+      //isSynced can be used to show a loading spinner when the list is being loaded. 
+      const { items, isSynced } = snapshot;
+      setMedia(items)
+    });
+
+    //unsubscribe to data updates when component is destroyed so that we don’t introduce a memory leak.
+    return function cleanup() {
+      subscription.unsubscribe();
+    }
+
+  }, []);
+
+  // const { media } = data;
   if (netInfo.isConnected) {
     return (
       <View>

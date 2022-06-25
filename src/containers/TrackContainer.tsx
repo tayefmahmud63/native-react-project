@@ -33,6 +33,8 @@ export const TrackContainer = ({ track, goBack }: Props) => {
 
   const play = () => {
     if (!isActive) {
+      console.log(track);
+      
       // requestAnimationFrame(() => {
       dispatch(loadTrack(track));
       // });

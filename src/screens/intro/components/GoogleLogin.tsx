@@ -1,53 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import {
-  GoogleSignin,
-  GoogleSigninButton,
-} from '@react-native-google-signin/google-signin';
-import { Button } from 'react-native-paper';
-import { useDispatch, useSelector } from 'react-redux';
-import { googleSignIn } from '../../../actions/userState';
+import React from 'react';
+import { Button, Text, View } from 'react-native';
+import { withOAuth } from "aws-amplify-react-native";
 
-export interface GoogleLoginProps {
-  color: string;
-  next: () => void;
-}
 
-// 86193367343-bp459vm9mul6frp7luvfec3hulvg9b0i.apps.googleusercontent.com
-function GoogleLogin({ color, next }: GoogleLoginProps) {
-  const { googleAccessGiven } = useSelector(state => state.user);
-  const [isLoading, setisLoading] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const dispatch = useDispatch();
-  const signIn = async () => {
-    setisLoading(true);
-    dispatch(googleSignIn());
-  };
+function App(props) {
+    const {
+      oAuthUser,
+      googleSignIn,
+      signOut,
+    } = props;
 
-  useEffect(() => {
-    if (googleAccessGiven) {
-      setisLoading(false);
-    }
-    GoogleSignin.isSignedIn().then(authenticated => {
-      setIsAuthenticated(authenticated);
-    });
-  }, [googleAccessGiven]);
-
-  if (isAuthenticated) {
-    return (
-      <Button mode="contained" icon="home" color={color} onPress={() => next()}>
-        Go to home
-      </Button>
-    );
-  }
   return (
-    <GoogleSigninButton
-      style={{ width: 192, height: 48 }}
-      size={GoogleSigninButton.Size.Wide}
-      color={GoogleSigninButton.Color.Dark}
-      onPress={signIn}
-      disabled={isLoading}
-    />
+    <View>
+        <Text>User: {oAuthUser ? JSON.stringify(oAuthUser.attributes) : 'None'}</Text>
+        {oAuthUser ? (
+            <Button title="Sign Out" onPress={signOut} />
+        ) : (
+            <>
+              
+                <Button title="Google" onPress={googleSignIn}  />
+            </>
+        )}
+    </View>
   );
 }
 
-export default GoogleLogin;
+export default withOAuth(App);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, FlatList, StyleSheet } from 'react-native';
 import { ActivityIndicator, Text } from 'react-native-paper';
-import firestore from '@react-native-firebase/firestore';
+// import firestore from '@react-native-firebase/firestore';
 import { Headline } from '../../../components/Headline';
 import { useNavigation } from '@react-navigation/core';
 import { TouchableOpacity } from 'react-native';
@@ -14,25 +14,25 @@ export function PlaylistList(props: PlaylistListProps) {
   const [playlists, setPlaylists] = useState([]); // Initial empty array of users
   const navigation = useNavigation();
   useEffect(() => {
-    const subscriber = firestore()
-      .collection('playlists')
-      .onSnapshot(querySnapshot => {
-        // see next step
-        const playlists = [];
+    // const subscriber = firestore()
+    //   .collection('playlists')
+    //   .onSnapshot(querySnapshot => {
+    //     // see next step
+    //     const playlists = [];
 
-        querySnapshot.forEach(documentSnapshot => {
-          playlists.push({
-            ...documentSnapshot.data(),
-            key: documentSnapshot.id,
-          });
-        });
+    //     querySnapshot.forEach(documentSnapshot => {
+    //       playlists.push({
+    //         ...documentSnapshot.data(),
+    //         key: documentSnapshot.id,
+    //       });
+    //     });
 
-        setPlaylists(playlists);
-        setLoading(false);
-      });
+    //     setPlaylists(playlists);
+    //     setLoading(false);
+    //   });
 
-    // Unsubscribe from events when no longer in use
-    return () => subscriber();
+    // // Unsubscribe from events when no longer in use
+    // return () => subscriber();
   }, []);
 
   if (loading) {

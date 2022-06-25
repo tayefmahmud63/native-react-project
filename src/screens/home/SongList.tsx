@@ -12,7 +12,7 @@ import { useDispatch } from 'react-redux';
 import isEmpty from 'lodash/isEmpty';
 import values from 'lodash/values';
 import FastImage from 'react-native-fast-image';
-import firestore from '@react-native-firebase/firestore';
+// import firestore from '@react-native-firebase/firestore';
 import { addToQueue } from '../../actions/playerState';
 import { TrackContainer } from '../../containers/TrackContainer';
 import { DefaultImage } from '../../components/DefaultImage';
@@ -42,27 +42,27 @@ export const SongList = ({ route, navigation }) => {
   }, [navigation]);
 
   useEffect(() => {
-    const subscriber = firestore()
-      .collection('playlists')
-      .doc('l1yi5FvJI3Cm2Y0WOJ7W')
-      .collection('songs')
-      .onSnapshot(querySnapshot => {
-        // see next step
-        const songs = [];
+    // const subscriber = firestore()
+    //   .collection('playlists')
+    //   .doc('l1yi5FvJI3Cm2Y0WOJ7W')
+    //   .collection('songs')
+    //   .onSnapshot(querySnapshot => {
+    //     // see next step
+    //     const songs = [];
 
-        querySnapshot.forEach(documentSnapshot => {
-          songs.push({
-            ...documentSnapshot.data(),
-            key: documentSnapshot.id,
-          });
-        });
+    //     querySnapshot.forEach(documentSnapshot => {
+    //       songs.push({
+    //         ...documentSnapshot.data(),
+    //         key: documentSnapshot.id,
+    //       });
+    //     });
 
-        setSongs(songs);
-        setLoading(false);
-      });
+    //     setSongs(songs);
+    //     setLoading(false);
+    //   });
 
-    // Unsubscribe from events when no longer in use
-    return () => subscriber();
+    // // Unsubscribe from events when no longer in use
+    // return () => subscriber();
   }, []);
 
   if (loading) {

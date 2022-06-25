@@ -7,7 +7,6 @@ import {
 } from '@react-native-google-signin/google-signin';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { log } from '../utils/logging';
-import firestore from '@react-native-firebase/firestore';
 
 export const setUserInfo =
   (user: any) => (dispatch: ThunkDispatch<undefined, undefined, AnyAction>) => {
@@ -34,18 +33,19 @@ export const removeUserInfo =
 
 export function startFreeTrial(key: string) {
   console.log(key);
-  firestore()
-    .collection('Users')
-    .doc(key)
-    .update({
-      isFreeTrialStarted: true,
-    })
-    .then(() => {
-      console.log('User updated!');
-    });
+  // firestore()
+  //   .collection('Users')
+  //   .doc(key)
+  //   .update({
+  //     isFreeTrialStarted: true,
+  //   })
+  //   .then(() => {
+  //     console.log('User updated!');
+  //   });
 }
 export function getUserSubscription(email) {
-  return firestore().collection('Users').where('email', 'in', [email]).get();
+  // return firestore().collection('Users').where('email', 'in', [email]).get();
+  return {}
 }
 export async function getUser(userInfo) {
   return new Promise(async (resolve, reject) => {
@@ -59,14 +59,14 @@ export async function getUser(userInfo) {
         isFreeTrialCompleted: false,
         startDate: new Date(),
       };
-      firestore()
-        .collection('Users')
-        .add(user)
-        .then(() => {
-          console.log('User added!');
-          resolve(user);
-        })
-        .catch(error => reject(error));
+      // firestore()
+      //   .collection('Users')
+      //   .add(user)
+      //   .then(() => {
+      //     console.log('User added!');
+      //     resolve(user);
+      //   })
+      //   .catch(error => reject(error));
     }
     response.forEach(item => {
       const user = item.data();

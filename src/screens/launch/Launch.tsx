@@ -33,8 +33,9 @@ function LaunchScreen({ navigation }: LaunchScreenProps) {
   }
 
   useEffect(() => {
-    console.log(user, introSlidesShown);
-    bootstrap();
+    console.log("bootstrap", user, introSlidesShown);
+    // bootstrap();
+    navigation.navigate('App');
     // createUser({ user: { email: 'yajananrao@gmail.com' } }).then(info => {
     //   console.log('info', info);
     // })

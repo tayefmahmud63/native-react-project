@@ -18,12 +18,7 @@ import {
 import { deserializeSongs } from '../utils/database';
 import { log } from '../utils/logging';
 import { TrackProps, AlbumProps } from '../utils/types';
-import TrackPlayer, {
-  STATE_BUFFERING,
-  STATE_PAUSED,
-  STATE_PLAYING,
-  STATE_STOPPED,
-} from 'react-native-track-player';
+import TrackPlayer, { Capability, State } from 'react-native-track-player';
 
 let subscription: EmitterSubscription;
 
@@ -32,46 +27,44 @@ const HISTORY_ID = 'user-playlist--000001';
 const FAVOURITE_ID = 'user-playlist--000002';
 
 export const setUpTrackPlayer =
-  () => (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
+  () => async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     try {
       TrackPlayer.updateOptions({
         stopWithApp: true,
         // Media controls capabilities
         capabilities: [
-          TrackPlayer.CAPABILITY_PLAY,
-          TrackPlayer.CAPABILITY_PAUSE,
-          TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
-          TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
-          // TrackPlayer.CAPABILITY_NEXT,
-          // TrackPlayer.CAPABILITY_PREVIOUS,
+          Capability.Play,
+          Capability.Pause,
+          Capability.SkipToNext,
+          Capability.SkipToPrevious,
         ],
 
         // Capabilities that will show up when the notification is in the compact form on Android
         compactCapabilities: [
-          TrackPlayer.CAPABILITY_PLAY,
-          TrackPlayer.CAPABILITY_PAUSE,
+          Capability.Play,
+          Capability.Pause
         ],
       });
-      TrackPlayer.setupPlayer();
+      await TrackPlayer.setupPlayer();
       subscription = TrackPlayer.addEventListener('playback-state', event => {
         // handle event
         const { state } = event;
-        if (state === STATE_PLAYING) {
+        if (state === State.Playing) {
           dispatch({
             status: 'playing',
             type: 'STATUS',
           });
-        } else if (state === STATE_PAUSED) {
+        } else if (state === State.Paused) {
           dispatch({
             status: 'paused',
             type: 'STATUS',
           });
-        } else if (state === STATE_STOPPED) {
+        } else if (state === State.Paused) {
           dispatch({
             status: 'complete',
             type: 'STATUS',
           });
-        } else if (state === STATE_BUFFERING) {
+        } else if (state === State.Buffering) {
           dispatch({
             status: 'loading',
             type: 'STATUS',
@@ -92,6 +85,8 @@ export const loadTrack =
         if (Platform.OS === 'ios' && !track.path.includes('https://')) {
           audioUrl = 'file://' + audioUrl;
         }
+        console.log(audioUrl);
+        
 
         if (audioUrl) {
           dispatch({
@@ -100,13 +95,13 @@ export const loadTrack =
           });
 
           const song = {
-            id: track?.id,
+            // id: track?.id,
             url: audioUrl,
             artwork: track?.cover,
             title: track.title,
             artist: track.artist || 'Unknown Artist',
           };
-          console.log(song);
+          console.log("play", song);
           await TrackPlayer.add([song]);
           if (playOnLoad) {
             TrackPlayer.play();
