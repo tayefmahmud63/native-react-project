@@ -22,15 +22,15 @@ export const MainScreen = () => {
       <ScrollView ref={ref}>
         <NetNotify />
         <ShortCutContainer />
-        <OnlineContainer />
-        <Divider />
+        {/* <OnlineContainer /> */}
+        {/* <Divider /> */}
         <RecentContainer />
         <Divider />
         <MostPlayedContainer />
         <Divider />
         <PlaylistList />
-        <Divider />
-        <OnlineSongsContainer />
+        {/* <Divider /> */}
+        {/* <OnlineSongsContainer /> */}
         <Divider />
         <Divider />
       </ScrollView>

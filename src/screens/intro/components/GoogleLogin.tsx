@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Text, View } from 'react-native';
 import {  Auth, Hub } from 'aws-amplify';
-import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
 import { useDispatch } from 'react-redux';
 import { setUserInfo } from '../../../actions/userState';
 

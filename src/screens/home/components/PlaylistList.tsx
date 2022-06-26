@@ -7,6 +7,9 @@ import { useNavigation } from '@react-navigation/core';
 import { TouchableOpacity } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { DefaultImage } from '../../../components/DefaultImage';
+import { DataStore } from '@aws-amplify/datastore';
+import { Album } from '../../../models';
+
 export interface PlaylistListProps { }
 
 export function PlaylistList(props: PlaylistListProps) {
@@ -14,25 +17,17 @@ export function PlaylistList(props: PlaylistListProps) {
   const [playlists, setPlaylists] = useState([]); // Initial empty array of users
   const navigation = useNavigation();
   useEffect(() => {
-    // const subscriber = firestore()
-    //   .collection('playlists')
-    //   .onSnapshot(querySnapshot => {
-    //     // see next step
-    //     const playlists = [];
+    const subscription = DataStore.observeQuery(Album).subscribe((snapshot) => {
+      //isSynced can be used to show a loading spinner when the list is being loaded. 
+      const { items, isSynced } = snapshot;
+      setPlaylists(items);
+      setLoading(false);
+    });
 
-    //     querySnapshot.forEach(documentSnapshot => {
-    //       playlists.push({
-    //         ...documentSnapshot.data(),
-    //         key: documentSnapshot.id,
-    //       });
-    //     });
-
-    //     setPlaylists(playlists);
-    //     setLoading(false);
-    //   });
-
-    // // Unsubscribe from events when no longer in use
-    // return () => subscriber();
+    //unsubscribe to data updates when component is destroyed so that we don’t introduce a memory leak.
+    return function cleanup() {
+      subscription.unsubscribe();
+    }
   }, []);
 
   if (loading) {
@@ -40,7 +35,6 @@ export function PlaylistList(props: PlaylistListProps) {
   }
 
   function navigateToPlaylist(playlist) {
-    console.log('navigate');
     navigation.navigate('SongList', {
       playlist: playlist,
     });
