@@ -49,25 +49,9 @@ export function getUserSubscription(email) {
 }
 export async function getUser(userInfo) {
   return new Promise(async (resolve, reject) => {
-    const response = await getUserSubscription(userInfo.user.email);
+    console.log(userInfo);
+    const response = await getUserSubscription(userInfo.attributes.email);
 
-    if (!response.size) {
-      const user = {
-        name: userInfo.user.name,
-        email: userInfo.user.email,
-        isFreeTrialStarted: false,
-        isFreeTrialCompleted: false,
-        startDate: new Date(),
-      };
-      // firestore()
-      //   .collection('Users')
-      //   .add(user)
-      //   .then(() => {
-      //     console.log('User added!');
-      //     resolve(user);
-      //   })
-      //   .catch(error => reject(error));
-    }
     response.forEach(item => {
       const user = item.data();
       user.id = item.id;
