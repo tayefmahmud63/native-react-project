@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { View, FlatList, StyleSheet } from 'react-native';
 import { ActivityIndicator, Text } from 'react-native-paper';
-// import firestore from '@react-native-firebase/firestore';
 import { Headline } from '../../../components/Headline';
 import { useNavigation } from '@react-navigation/core';
 import { TouchableOpacity } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { DefaultImage } from '../../../components/DefaultImage';
 import { DataStore } from '@aws-amplify/datastore';
-import { Album } from '../../../models';
+import { Album, Song } from '../../../models';
 
 export interface PlaylistListProps { }
 
@@ -34,9 +33,17 @@ export function PlaylistList(props: PlaylistListProps) {
     return <ActivityIndicator />;
   }
 
-  function navigateToPlaylist(playlist) {
-    navigation.navigate('SongList', {
-      playlist: playlist,
+  async function navigateToPlaylist(playlist) {
+    const songs = (await DataStore.query(Song)).filter(song => song.albumID === playlist.id);
+    const playlistMetadata = {
+      id: playlist.id,
+      name: playlist.title,
+      owner: 'Serenity',
+      cover: playlist.cover,
+    };
+    navigation.navigate('Playlist', {
+      playlist: playlistMetadata,
+      songs: songs,
     });
   }
 

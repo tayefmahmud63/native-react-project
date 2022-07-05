@@ -12,7 +12,6 @@ import { useDispatch } from 'react-redux';
 import isEmpty from 'lodash/isEmpty';
 import values from 'lodash/values';
 import FastImage from 'react-native-fast-image';
-// import firestore from '@react-native-firebase/firestore';
 import { addToQueue } from '../../actions/playerState';
 import { TrackContainer } from '../../containers/TrackContainer';
 import { DefaultImage } from '../../components/DefaultImage';
