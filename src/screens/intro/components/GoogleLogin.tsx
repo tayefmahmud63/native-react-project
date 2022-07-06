@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Text, View } from 'react-native';
-import {  Auth, Hub } from 'aws-amplify';
+import { Button, View } from 'react-native';
+import { Auth, Hub } from 'aws-amplify';
 import { useDispatch } from 'react-redux';
 import { setUserInfo } from '../../../actions/userState';
 
@@ -29,11 +29,12 @@ function Login({ next }) {
   }, []);
 
   useEffect(() => {
-    if(user){
+    if (user) {
       dispatch(setUserInfo(user));
-      next()
+      next();
     }
-  }, [user])
+  }, [user]);
+
   function getUser() {
     return Auth.currentAuthenticatedUser()
       .then(userData => userData)

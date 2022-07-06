@@ -30,6 +30,12 @@
 				<string>com.googleusercontent.apps.607638068572-tjs8orsskfpiudsa0fnnvqifuf6p6cdg</string>
 			</array>
 		</dict>
+		<dict>
+             <key>CFBundleURLSchemes</key>
+             <array>
+                 <string>mft</string>
+             </array>
+         </dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>

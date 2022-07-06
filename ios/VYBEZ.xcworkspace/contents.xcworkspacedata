@@ -7,4 +7,10 @@
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:vybez.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:VYBEZ.xcodeproj">
+   </FileRef>
 </Workspace>
