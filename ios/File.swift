@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  VYBEZ
+//  vybez
 //
 //  Created by Yajana Rao on 14/05/21.
 //

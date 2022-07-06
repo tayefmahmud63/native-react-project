@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "VYBEZ.app"
-               BlueprintName = "VYBEZ"
-               ReferencedContainer = "container:VYBEZ.xcodeproj">
+               BuildableName = "vybez.app"
+               BlueprintName = "vybez"
+               ReferencedContainer = "container:vybez.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "VYBEZTests.xctest"
-               BlueprintName = "VYBEZTests"
-               ReferencedContainer = "container:VYBEZ.xcodeproj">
+               BuildableName = "vybezTests.xctest"
+               BlueprintName = "vybezTests"
+               ReferencedContainer = "container:vybez.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "VYBEZ.app"
-            BlueprintName = "VYBEZ"
-            ReferencedContainer = "container:VYBEZ.xcodeproj">
+            BuildableName = "vybez.app"
+            BlueprintName = "vybez"
+            ReferencedContainer = "container:vybez.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "VYBEZ.app"
-            BlueprintName = "VYBEZ"
-            ReferencedContainer = "container:VYBEZ.xcodeproj">
+            BuildableName = "vybez.app"
+            BlueprintName = "vybez"
+            ReferencedContainer = "container:vybez.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
