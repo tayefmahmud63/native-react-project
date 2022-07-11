@@ -3,7 +3,7 @@
 ## Clone github repository
 
 ```shell
-git clone https://github.com/e-johnson/Vybezmusic.git
+git clone https://github.com/e-johnson/MFTmusic.git
 ```
 
 ## Project structure

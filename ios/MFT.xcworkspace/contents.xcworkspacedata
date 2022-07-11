@@ -2,15 +2,15 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:vybez.xcodeproj">
+      location = "group:/Users/yajanarao/Projects/MFTmusic/ios/MFT.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:vybez.xcodeproj">
+      location = "group:MFT.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:VYBEZ.xcodeproj">
+      location = "group:MFT.xcodeproj">
    </FileRef>
 </Workspace>

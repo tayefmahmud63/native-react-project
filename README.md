@@ -1,5 +1,5 @@
-# Vybezmusic
+# MFT
 
-location of vybez music app
+location of MFT music app
 
 [Documentation](docs/Setup.md)
