@@ -1,4 +1,4 @@
-package com.vybez;
+package com.mft;
 import android.os.Bundle; // <- add this necessary import
 import com.facebook.react.ReactActivity;
 import com.zoontek.rnbootsplash.RNBootSplash; // <- add this necessary import
@@ -12,7 +12,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "vybez";
+    return "MFT";
   }
 
   @Override

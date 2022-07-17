@@ -7,14 +7,14 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface VYBEZTests : XCTestCase
+@interface MFTTests : XCTestCase
 
 @end
 
-@implementation VYBEZTests
+@implementation MFTTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL(^)(UIView *view))test
-{
+{P
   if (test(view)) {
     return YES;
   }

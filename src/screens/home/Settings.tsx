@@ -11,18 +11,17 @@ import {
   Banner,
 } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
-
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StackScreenProps } from '@react-navigation/stack';
 import { Screen } from '../../components/Screen';
 import { updateTheme, changeRadioMode } from '../../actions';
 import { clearHistory } from '../../actions/playerState';
 import { AlertDialog } from '../../components/AlertDialog';
-import { googleSignIn, removeUserInfo } from '../../actions/userState';
+import { removeUserInfo } from '../../actions/userState';
 import { log } from '../../utils/logging';
 import { LoadingDialog } from '../../components/LoadingDialog';
 import { DiagnoseDialog } from './components/DiagnoseDialog';
+import Auth from '@aws-amplify/auth';
 
 export const SettingScreen = ({ navigation }: StackScreenProps) => {
   const dispatch = useDispatch();
@@ -53,12 +52,7 @@ export const SettingScreen = ({ navigation }: StackScreenProps) => {
   const signOut = async () => {
     try {
       setLoading(true);
-      GoogleSignin.configure();
-      await GoogleSignin.revokeAccess();
-      await GoogleSignin.signOut();
-      await GoogleSignin.revokeAccess();
-      const { idToken } = await GoogleSignin.getTokens();
-      await GoogleSignin.clearCachedAccessToken(idToken);
+      Auth.signOut();
       await AsyncStorage.clear();
       dispatch(removeUserInfo());
       setLoading(false);
@@ -70,13 +64,6 @@ export const SettingScreen = ({ navigation }: StackScreenProps) => {
     }
   };
 
-  const signIn = async () => {
-    try {
-      dispatch(googleSignIn());
-    } catch (error) {
-      log.error('signIn', error);
-    }
-  };
 
   const clearData = () => {
     dispatch(clearHistory());
@@ -98,17 +85,17 @@ export const SettingScreen = ({ navigation }: StackScreenProps) => {
       />
       <LoadingDialog visible={loading} title="Logging you out" />
       <ScrollView>
-        {/* <List.Item
-          title={user.user.name}
-          description={user.user.email}
+        <List.Item
+          title={user.username}
+          description={user.attributes.email}
           left={props =>
-            user.user.photo ? (
-              <Avatar.Image {...props} source={{ uri: user.user.photo }} />
+            user.attributes.photo ? (
+              <Avatar.Image {...props} source={{ uri: user.attributes.photo }} />
             ) : (
               <List.Icon {...props} icon="person-outline" />
             )
           }
-        /> */}
+        />
         <Drawer.Section title="Preferences">
           <TouchableRipple onPress={() => toggleTheme(dark)}>
             <View style={styles.preference}>
@@ -145,7 +132,7 @@ export const SettingScreen = ({ navigation }: StackScreenProps) => {
           />
           {!googleAccessGiven || !user ? (
             <Drawer.Item
-              onPress={signIn}
+              // onPress={signIn}
               label="Sign In"
               icon="log-in-outline"
             />

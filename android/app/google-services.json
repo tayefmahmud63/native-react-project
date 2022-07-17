@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:607638068572:android:2ebe5aa77ca056c23c7599",
         "android_client_info": {
-          "package_name": "com.vybez"
+          "package_name": "com.MFT"
         }
       },
       "oauth_client": [
@@ -34,7 +34,7 @@
               "client_id": "607638068572-tjs8orsskfpiudsa0fnnvqifuf6p6cdg.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.vybez"
+                "bundle_id": "com.MFT"
               }
             }
           ]
