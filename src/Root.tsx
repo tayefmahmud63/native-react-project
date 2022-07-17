@@ -23,10 +23,10 @@ export const RootScreen = () => {
     }
   }, [setup, dispatch]);
 
-  let theme = DefaultTheme;
+  let theme = DarkTheme;
 
-  if (themeType === 'dark') {
-    theme = DarkTheme;
+  if (themeType === 'light') {
+    theme = DefaultTheme;
   }
 
   return (

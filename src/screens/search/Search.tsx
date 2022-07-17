@@ -13,7 +13,6 @@ import { useCollapsibleHeader } from 'react-navigation-collapsible';
 import Genre from '../../data/genre.json';
 import { Screen } from '../../components/Screen';
 import { Headline } from '../../components/Headline';
-import { Title } from '../../components/Title';
 
 interface GenreProps {
   item: {
@@ -56,14 +55,16 @@ export const SearchScreen = ({ navigation }) => {
         key="Genre"
         data={Genre}
         keyExtractor={(item, index) => index.toString()}
-        numColumns={2}
-        ListHeaderComponent={() => (
-          <Headline style={styles.headline}>All Moods & Genres</Headline>
-        )}
+        // numColumns={2}
+        // ListHeaderComponent={() => (
+        //   <Headline style={styles.headline}>All Moods & Genres</Headline>
+        // )}
         renderItem={({ item }: GenreProps) => (
           <TouchableOpacity
             style={{
               flex: 1,
+              marginVertical: 12,
+              marginHorizontal: 20
             }}
             onPress={() =>
               navigation.navigate('Filter', {
@@ -72,16 +73,16 @@ export const SearchScreen = ({ navigation }) => {
               })
             }
           >
-            <LinearGradient
+            {/* <LinearGradient
               colors={item.colors}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 0 }}
               style={styles.item}
-            >
-              <Title style={{ color: 'white' }} numberOfLines={1}>
+            > */}
+              <Text style={{ color: 'white' }} numberOfLines={1}>
                 {item.title}
-              </Title>
-            </LinearGradient>
+              </Text>
+            {/* </LinearGradient> */}
           </TouchableOpacity>
         )}
       />
@@ -98,17 +99,10 @@ export const SearchScreen = ({ navigation }) => {
       >
         <Pressable onPress={() => navigation.navigate('Find')}>
           <Surface
-            style={[styles.searchBarContainer, { borderRadius: roundness }]}
+            style={[styles.searchBarContainer, { borderRadius: roundness, backgroundColor: colors.background, borderColor: colors.text, borderWidth: 1 }]}
           >
-            <IconButton icon="search-outline" />
-            <Text
-              style={[
-                styles.searchBarPlaceholder,
-                { color: colors.placeholder },
-              ]}
-            >
-              Artists, songs or podcasts
-            </Text>
+            <IconButton icon="search-outline" color={colors.text} />
+            
           </Surface>
         </Pressable>
       </Animated.View>

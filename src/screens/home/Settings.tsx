@@ -98,7 +98,7 @@ export const SettingScreen = ({ navigation }: StackScreenProps) => {
       />
       <LoadingDialog visible={loading} title="Logging you out" />
       <ScrollView>
-        <List.Item
+        {/* <List.Item
           title={user.user.name}
           description={user.user.email}
           left={props =>
@@ -108,7 +108,7 @@ export const SettingScreen = ({ navigation }: StackScreenProps) => {
               <List.Icon {...props} icon="person-outline" />
             )
           }
-        />
+        /> */}
         <Drawer.Section title="Preferences">
           <TouchableRipple onPress={() => toggleTheme(dark)}>
             <View style={styles.preference}>

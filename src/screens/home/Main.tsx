@@ -21,7 +21,7 @@ export const MainScreen = () => {
     <Screen>
       <ScrollView ref={ref}>
         <NetNotify />
-        <ShortCutContainer />
+        {/* <ShortCutContainer /> */}
         {/* <OnlineContainer /> */}
         {/* <Divider /> */}
         <RecentContainer />

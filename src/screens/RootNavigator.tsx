@@ -46,7 +46,7 @@ const BottomNavigator = () => {
         options={{
           tabBarIcon: ({ focused }) => (
             <IconButton
-              icon={focused ? 'home' : 'home-outline'}
+              icon={'discover'}
               color={focused ? activeTintColor : inactiveTintColor}
               style={{ margin: 0, padding: 0 }}
             />
@@ -73,7 +73,7 @@ const BottomNavigator = () => {
           tabBarLabel: 'Your library',
           tabBarIcon: ({ focused }) => (
             <IconButton
-              icon={focused ? 'browser' : 'browser-outline'}
+              icon={'library'}
               color={focused ? activeTintColor : inactiveTintColor}
               style={{ margin: 0, padding: 0 }}
             />
@@ -81,12 +81,12 @@ const BottomNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Offline"
+        name="Artist Portal"
         component={OfflineStack}
         options={{
           tabBarIcon: ({ focused }) => (
             <IconButton
-              icon={focused ? 'save' : 'save-outline'}
+              icon={'artist'}
               color={focused ? activeTintColor : inactiveTintColor}
               style={{ margin: 0, padding: 0 }}
             />
@@ -110,9 +110,10 @@ const RootStack = () => {
         component={FindScreen}
         initialParams={{ type: 'all' }}
         options={{
-          header: ({ navigation, route }) => (
-            <Header goBack={navigation.goBack} />
-          ),
+          headerTitle: 'Search',
+          headerTitleAlign: 'center',
+          headerLeft: () => null,
+          headerTitleStyle: { fontFamily: 'Nunito-ExtraBold', fontSize: 28 },
         }}
       />
       <Stack.Screen

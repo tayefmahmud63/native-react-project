@@ -4,7 +4,6 @@ import { useTheme, IconButton } from 'react-native-paper';
 import { MainScreen } from './Main';
 import { SettingScreen } from './Settings';
 import { SongsList } from '../shared/SongsList';
-import { getGreetingTime } from '../../utils/greeting';
 import { SongList } from './SongList';
 
 const Stack = createStackNavigator();
@@ -16,7 +15,7 @@ const HomeStack = () => {
     <Stack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: colors.surface,
+          backgroundColor: colors.background,
         },
         headerTintColor: colors.text,
         safeAreaInsets: { top: 0, bottom: 0 },
@@ -29,14 +28,15 @@ const HomeStack = () => {
         name="Home"
         component={MainScreen}
         options={({ navigation }) => ({
-          headerTitle: getGreetingTime(),
-          headerTitleStyle: { fontFamily: 'Nunito-ExtraBold', fontSize: 24 },
-          headerRight: () => (
-            <IconButton
-              icon="settings-outline"
-              onPress={() => navigation.navigate('Settings')}
-            />
-          ),
+          headerTitle: "DISCOVER",
+          headerTitleAlign: 'center',
+          headerTitleStyle: { fontFamily: 'Nunito-ExtraBold', fontSize: 16 },
+          // headerRight: () => (
+          //   <IconButton
+          //     icon="settings-outline"
+          //     onPress={() => navigation.navigate('Settings')}
+          //   />
+          // ),
         })}
       />
       <Stack.Screen

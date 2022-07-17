@@ -15,8 +15,11 @@ import FolderAddOutlineIcon from '../assets/Icons/folder-add-outline.svg';
 import FolderOutlineIcon from '../assets/Icons/folder-outline.svg';
 import HeartOutlineIcon from '../assets/Icons/heart-outline.svg';
 import HeartIcon from '../assets/Icons/heart.svg';
-import HomeOutlineIcon from '../assets/Icons/home-outline.svg';
-import HomeIcon from '../assets/Icons/home.svg';
+import DiscoverIcon from '../assets/Icons/discover.svg';
+// import HomeOutlineIcon from '../assets/Icons/home-outline.svg';
+// import HomeIcon from '../assets/Icons/home.svg';
+import LibraryIcon from '../assets/Icons/library.svg';
+import ArtistIcon from '../assets/Icons/artist.svg';
 import LogOutOutlineIcon from '../assets/Icons/log-out-outline.svg';
 import MenuOutlineIcon from '../assets/Icons/menu-outline.svg';
 import MoreVerticalOutlineIcon from '../assets/Icons/more-vertical-outline.svg';
@@ -56,12 +59,15 @@ export const ICONS = {
   'arrow-back': ArrowBackIcon,
   'skip-back-outline': SkipBackOutlineIcon,
   'skip-forward-outline': SkipForwardOutlineIcon,
-  'home-outline': HomeOutlineIcon,
-  home: HomeIcon,
+  discover: DiscoverIcon,
+  // 'home-outline': HomeOutlineIcon,
+  // home: HomeIcon,
   search: SearchIcon,
   'search-outline': SearchOutlineIcon,
-  browser: BrowserIcon,
-  'browser-outline': BrowserOutlineIcon,
+  // browser: BrowserIcon,
+  // 'browser-outline': BrowserOutlineIcon,
+  library: LibraryIcon,
+  artist: ArtistIcon,
   'settings-outline': SettingsOutlineIcon,
   'close-outline': CloseOutlineIcon,
   save: SaveIcon,

@@ -19,6 +19,7 @@ export function PlaylistList(props: PlaylistListProps) {
     const subscription = DataStore.observeQuery(Album).subscribe((snapshot) => {
       //isSynced can be used to show a loading spinner when the list is being loaded. 
       const { items, isSynced } = snapshot;
+      console.log(items);
       setPlaylists(items);
       setLoading(false);
     });
@@ -57,7 +58,7 @@ export function PlaylistList(props: PlaylistListProps) {
           alignItems: 'center',
           marginBottom: 8,
         }}>
-        <Headline>Top Playlists</Headline>
+        <Headline>Now Trending</Headline>
       </View>
       <FlatList
         horizontal
@@ -82,6 +83,12 @@ export function PlaylistList(props: PlaylistListProps) {
             <Text numberOfLines={2} style={styles.title}>
               {item?.title}
             </Text>
+            <Text numberOfLines={2} style={styles.title}>
+              {item?.author}
+            </Text>
+            <Text numberOfLines={2} style={styles.title}>
+              {item?.price}
+            </Text>
           </TouchableOpacity>
         )}
       />
@@ -91,23 +98,23 @@ export function PlaylistList(props: PlaylistListProps) {
 
 const styles = StyleSheet.create({
   item: {
-    alignItems: 'center',
+    // alignItems: 'center',
     marginBottom: 4,
     marginLeft: 12,
-    width: 120,
+    width: 140,
   },
   title: {
     fontSize: 12,
     marginTop: 8,
     padding: 0,
-    fontFamily: 'Nunito-Bold',
+    fontFamily: 'Nunito-SemiBold',
     includeFontPadding: false,
   },
   photo: {
     borderRadius: 12,
     elevation: 4,
-    height: 120,
-    width: 120,
+    height: 140,
+    width: 140,
     backgroundColor: 'gray',
   },
 });
