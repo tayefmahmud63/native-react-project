@@ -10,18 +10,22 @@ import { SafeAreaView } from 'react-native';
 import { OfflineStack } from './offline';
 import { SearchStack } from './search';
 import HomeStack from './home';
-import IntroductionScreen from './intro/Introduction';
 import { LibraryStack } from './library';
 import { BottomTabBar } from '../components/BottomTabBar';
 import NotificationContainer from '../containers/NotificationContainer';
 import LaunchScreen from './launch/Launch';
 import { PlayerStack } from './player';
 import { FindScreen } from './shared/Find';
-import { Header } from '../components/Header';
+// import { Header } from '../components/Header';
 import PaymentScreen from './payment/Payment';
+import SignIn from './Auth/SignIn';
+import SignUp from './Auth/SignUp';
+import Login from './Auth/Login';
+import Verify from './Auth/Verify';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
+const AuthStack = createStackNavigator();
 const NativeStack = createNativeStackNavigator();
 
 const BottomNavigator = () => {
@@ -125,7 +129,19 @@ const RootStack = () => {
   );
 };
 
-const AuthStack = () => {
+
+function Auth () {
+  return (
+    <AuthStack.Navigator>
+      <AuthStack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+      <AuthStack.Screen name="SignIn" component={SignIn} />
+      <AuthStack.Screen name="SignUp" component={SignUp} options={{title: 'CREATE ACCOUNT', headerTitleAlign: 'center'}} />
+      <AuthStack.Screen name="Verify" component={Verify} />
+    </AuthStack.Navigator>
+  )
+}
+
+const AppStack = () => {
   return (
     <NativeStack.Navigator
       screenOptions={{
@@ -133,7 +149,7 @@ const AuthStack = () => {
       }}
       initialRouteName="Launch">
       <NativeStack.Screen name="App" component={RootStack} />
-      <NativeStack.Screen name="Intro" component={IntroductionScreen} />
+      <NativeStack.Screen name="Auth" component={Auth} />
       <NativeStack.Screen name="Launch" component={LaunchScreen} />
       <Stack.Screen
         name="Payment"
@@ -156,7 +172,7 @@ export const RootNavigator = () => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.surface }}>
       <NotificationContainer />
-      <AuthStack />
+      <AppStack />
     </SafeAreaView>
   );
 };

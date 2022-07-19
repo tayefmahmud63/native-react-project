@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     marginBottom: 8,
   },
-  artCover: { width: 200, height: 200, elevation: 4, borderRadius: 12 },
+  artCover: { width: '100%', height: 200, elevation: 4, borderRadius: 12 },
   titleContainer: {
     alignItems: 'center',
     justifyContent: 'center',

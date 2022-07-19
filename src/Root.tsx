@@ -25,9 +25,9 @@ export const RootScreen = () => {
 
   let theme = DarkTheme;
 
-  if (themeType === 'light') {
-    theme = DefaultTheme;
-  }
+  // if (themeType === 'light') {
+  //   theme = DefaultTheme;
+  // }
 
   return (
     <NavigationContainer theme={theme}>

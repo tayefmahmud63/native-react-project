@@ -38,6 +38,48 @@ export const schema = {
                         "associatedWith": "albumID"
                     }
                 },
+                "author": {
+                    "name": "author",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "price": {
+                    "name": "price",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "description": {
+                    "name": "description",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "releasedAt": {
+                    "name": "releasedAt",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "uniqueId": {
+                    "name": "uniqueId",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "availableCopies": {
+                    "name": "availableCopies",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -186,5 +228,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "e030687c780984e8bbabf23a87602531"
+    "version": "46b7fcaf2a09f7b0cc87e1d3f733bf85"
 };

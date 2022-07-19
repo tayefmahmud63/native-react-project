@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import * as React from 'react';
 import {
   Title,
   Button,
   Divider,
   Subheading,
   IconButton,
+  useTheme,
+  Text,
+  Caption,
+  List,
 } from 'react-native-paper';
 import { StyleSheet, View, FlatList, RefreshControl } from 'react-native';
 import { useDispatch } from 'react-redux';
@@ -18,11 +22,16 @@ import { Screen } from '../../components/Screen';
 import { EmptyPlaylist } from '../../components/EmptyPlaylist';
 
 import { TrackProps } from '../../utils/types';
-import { useLayoutEffect } from 'react';
+import { DataStore } from 'aws-amplify';
+import { Song } from '../../models';
 
 export const SongsList = ({ route, navigation }) => {
-  const { playlist, songs } = route.params;
-  const [refreshing, setRefreshing] = useState(false);
+
+  const { playlist } = route.params;
+  const [songs, setSongs] = React.useState();
+
+  const { colors } = useTheme();
+  const [refreshing, setRefreshing] = React.useState(false);
 
   const dispatch = useDispatch();
 
@@ -34,17 +43,13 @@ export const SongsList = ({ route, navigation }) => {
     setRefreshing(false);
   };
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: playlist.name,
-      headerRight: () => (
-        <IconButton
-          icon="play-circle-outline"
-          onPress={() => addSongToQueue()}
-        />
-      ),
-    });
-  }, [navigation]);
+  async function getSongs() {
+    const songs = (await DataStore.query(Song)).filter(song => song.albumID === playlist.id);
+    setSongs(songs);
+  }
+  React.useEffect(() => {
+    getSongs();
+  }, [])
 
   return (
     <Screen>
@@ -53,33 +58,43 @@ export const SongsList = ({ route, navigation }) => {
       ) : (
         <FlatList
           ListHeaderComponent={() => (
-            <View style={{ margin: 12 }}>
-              <View style={styles.coverContainer}>
-                {playlist.cover ? (
-                  <FastImage
-                    source={{ uri: playlist.cover }}
-                    style={styles.artCover}
-                  />
-                ) : (
-                  <DefaultImage style={styles.artCover} />
-                )}
+            <View>
+              <View style={{ margin: 12 }}>
+                <View style={styles.coverContainer}>
+                  {playlist.cover ? (
+                    <FastImage
+                      source={{ uri: playlist.cover }}
+                      style={styles.artCover}
+                    />
+                  ) : (
+                    <DefaultImage style={styles.artCover} />
+                  )}
+                </View>
+                <View style={styles.titleContainer}>
+                  <Title style={{ textTransform: 'uppercase', fontSize: 30 }}>{playlist.title}</Title>
+                  <Title style={{ color: colors.primary }}>{playlist.author}</Title>
+                  <View style={{ flexDirection: "row", justifyContent: 'space-between' }}>
+                    <Text>{`Starts at $${playlist.price}`}</Text>
+                    <Text>{`${playlist.availableCopies} For Sale`}</Text>
+                  </View>
+                </View>
+                <View style={styles.buttonContainer}>
+                  <Button mode="contained" uppercase={false} onPress={addSongToQueue} style={{ paddingVertical: 6, borderRadius: 40, width: '100%', height: 52 }}>
+                    Purchase
+                  </Button>
+                </View>
+                <Caption>{`Release on ${playlist.releasedAt}`}</Caption>
+                <Text>{playlist.description}</Text>
               </View>
-              <View style={styles.titleContainer}>
-                <Title>{playlist.name}</Title>
-                <Subheading>{`by ${playlist.owner}`}</Subheading>
-              </View>
-              <View style={styles.buttonContainer}>
-                <Button mode="contained" onPress={addSongToQueue}>
-                  Play All
-                </Button>
-              </View>
+              <List.Item title={"Preview the tracks"} titleStyle={{ color: colors.primary }} right={props => <List.Icon {...props} icon='play-circle-outline' />} />
+              <Divider />
             </View>
           )}
           data={songs}
           renderItem={({ item }: { item: TrackProps }) => (
             <TrackContainer track={item} />
           )}
-          ItemSeparatorComponent={() => <Divider inset />}
+          ItemSeparatorComponent={() => <Divider />}
           keyExtractor={(item, index) => index.toString()}
           ListFooterComponent={() => <View style={{ height: 100 }} />}
           refreshControl={
@@ -104,12 +119,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
-    marginBottom: 8,
+    marginBottom: 24,
   },
-  artCover: { width: 200, height: 200, elevation: 4, borderRadius: 12 },
+  artCover: { width: '100%', height: 400, elevation: 4, borderRadius: 12 },
   titleContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: 10,
+    margin: 16,
   },
 });

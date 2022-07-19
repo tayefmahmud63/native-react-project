@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { useTheme } from 'react-native-paper';
 // import moment from 'moment';
 import { isEmpty } from 'lodash';
+import { Auth } from 'aws-amplify';
 // import { getUser } from '../../actions/userState';
 
 export interface LaunchScreenProps extends StackScreenProps { }
@@ -14,35 +15,26 @@ function LaunchScreen({ navigation }: LaunchScreenProps) {
   const { introSlidesShown, user } = useSelector(state => state.user);
 
   async function bootstrap() {
-    if (introSlidesShown && !isEmpty(user)) {
-      // const info = await getUser(user);
-      // if (info.isFreeTrialCompleted || !info.isFreeTrialStarted) {
-      //   navigation.navigate('Payment');
-      // } else {
-      //   const validTrial = moment(info.startDate).isAfter(
-      //     moment(info.startDate).add(30, 'days'),
-      //   );
-      //   if (validTrial) {
-      //     navigation.navigate('Payment');
-      //   } else {
-          navigation.navigate('App');
-        // }
-      // }
-    } else {
-      navigation.navigate('Intro');
+    Auth.currentAuthenticatedUser()
+      .then(currentUser => {
+        navigation.navigate('App');
+      })
+      .catch(() => {
+        console.log("Not signed in");
+        navigation.navigate('Auth');
+      });
     }
+
+    useEffect(() => {
+      console.log("bootstrap", user, introSlidesShown);
+      bootstrap();
+      // navigation.navigate('App');
+      // createUser({ user: { email: 'yajananrao@gmail.com' } }).then(info => {
+      //   console.log('info', info);
+      // })
+    }, []);
+
+    return <View style={{ flex: 1, backgroundColor: colors.background }} />;
   }
 
-  useEffect(() => {
-    console.log("bootstrap", user, introSlidesShown);
-    bootstrap();
-    // navigation.navigate('App');
-    // createUser({ user: { email: 'yajananrao@gmail.com' } }).then(info => {
-    //   console.log('info', info);
-    // })
-  }, []);
-
-  return <View style={{ flex: 1, backgroundColor: colors.background }} />;
-}
-
-export default LaunchScreen;
+  export default LaunchScreen;

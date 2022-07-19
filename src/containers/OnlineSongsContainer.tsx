@@ -6,7 +6,7 @@ import { TrackScrollView } from '../components/TrackScrollView';
 import { Headline } from '../components/Headline';
 
 import { DataStore } from '@aws-amplify/datastore';
-import { Album, Song } from '../models';
+import { Album } from '../models';
 
 const OnlineSongsContainer = () => {
   const [media, setMedia] = React.useState([]);  
@@ -14,16 +14,8 @@ const OnlineSongsContainer = () => {
   const navigation = useNavigation();
 
   const navigateToPlaylist = async (playlist: any) => {
-    const songs = (await DataStore.query(Song)).filter(song => song.albumID === playlist.id);
-    const playlistMetadata = {
-      id: playlist.id,
-      name: playlist.title,
-      owner: 'Serenity',
-      cover: playlist.cover,
-    };
     navigation.navigate('Playlist', {
-      playlist: playlistMetadata,
-      songs: songs,
+      playlist: playlist,
     });
   };
 

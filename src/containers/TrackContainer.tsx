@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import isEqual from 'lodash/isEqual';
 import isUndefined from 'lodash/isUndefined';
-
-import { loadTrack } from '../actions/playerState';
 import { Track } from '../components/Track';
 import { TrackProps } from '../utils/types';
 import { RootReducerType } from '../reducers';
@@ -33,8 +31,6 @@ export const TrackContainer = ({ track, goBack }: Props) => {
 
   const play = () => {
     if (!isActive) {
-      console.log(track);
-      
       // requestAnimationFrame(() => {
       dispatch(loadTrack(track));
       // });

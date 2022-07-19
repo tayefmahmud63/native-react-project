@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, FlatList, StyleSheet } from 'react-native';
-import { ActivityIndicator, Text } from 'react-native-paper';
+import { ActivityIndicator, Caption, Text } from 'react-native-paper';
 import { Headline } from '../../../components/Headline';
 import { useNavigation } from '@react-navigation/core';
 import { TouchableOpacity } from 'react-native';
@@ -35,16 +35,8 @@ export function PlaylistList(props: PlaylistListProps) {
   }
 
   async function navigateToPlaylist(playlist) {
-    const songs = (await DataStore.query(Song)).filter(song => song.albumID === playlist.id);
-    const playlistMetadata = {
-      id: playlist.id,
-      name: playlist.title,
-      owner: 'Serenity',
-      cover: playlist.cover,
-    };
     navigation.navigate('Playlist', {
-      playlist: playlistMetadata,
-      songs: songs,
+      playlist: playlist,
     });
   }
 
@@ -80,14 +72,17 @@ export function PlaylistList(props: PlaylistListProps) {
               <DefaultImage style={styles.photo} />
             )}
 
-            <Text numberOfLines={2} style={styles.title}>
+            <Text numberOfLines={1} style={styles.title}>
               {item?.title}
             </Text>
-            <Text numberOfLines={2} style={styles.title}>
+            <Caption numberOfLines={1}>
               {item?.author}
-            </Text>
-            <Text numberOfLines={2} style={styles.title}>
-              {item?.price}
+            </Caption>
+            <Caption numberOfLines={1}>
+              {item?.uniqueId}
+            </Caption>
+            <Text numberOfLines={1}>
+              {`$${item?.price}`}
             </Text>
           </TouchableOpacity>
         )}

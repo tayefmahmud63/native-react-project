@@ -32,7 +32,7 @@ export const INITIAL_CONFIG = {
   radio: false,
   repeat: 'repeat-all',
   setup: false,
-  themeType: Appearance.getColorScheme(),
+  themeType: 'dark',
 };
 
 const INITIAL_STATE = {

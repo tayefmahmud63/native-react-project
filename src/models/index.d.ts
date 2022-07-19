@@ -17,6 +17,12 @@ export declare class Album {
   readonly title?: string | null;
   readonly cover?: string | null;
   readonly Songs?: (Song | null)[] | null;
+  readonly author?: string | null;
+  readonly price?: number | null;
+  readonly description?: string | null;
+  readonly releasedAt?: string | null;
+  readonly uniqueId?: string | null;
+  readonly availableCopies?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Album, AlbumMetaData>);

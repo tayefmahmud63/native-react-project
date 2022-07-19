@@ -56,7 +56,7 @@ const HomeStack = () => {
         }}
       />
 
-      <Stack.Screen name="Playlist" component={SongsList} />
+      <Stack.Screen name="Playlist" component={SongsList} options={{title: ''}}/>
     </Stack.Navigator>
   );
 };

@@ -1,6 +1,6 @@
 package com.mft;
-import android.os.Bundle; // <- add this necessary import
 import com.facebook.react.ReactActivity;
+import com.facebook.react.ReactActivityDelegate; // <- add this necessary import
 import com.zoontek.rnbootsplash.RNBootSplash; // <- add this necessary import
 
 
@@ -14,10 +14,16 @@ public class MainActivity extends ReactActivity {
   protected String getMainComponentName() {
     return "MFT";
   }
-
+  
   @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    RNBootSplash.init(R.drawable.bootsplash, MainActivity.this); // <- display the generated bootsplash.xml drawable over our MainActivity
+  protected ReactActivityDelegate createReactActivityDelegate() {
+    return new ReactActivityDelegate(this, getMainComponentName()) {
+
+      @Override
+      protected void loadApp(String appKey) {
+        RNBootSplash.init(MainActivity.this); // <- initialize the splash screen
+        super.loadApp(appKey);
+      }
+    };
   }
 }
