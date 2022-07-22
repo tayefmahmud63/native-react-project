@@ -17,7 +17,6 @@
     "@react-native-community/masked-view": "^0.1.5",
     "@react-native-community/netinfo": "^6.2.1",
     "@react-native-community/slider": "^3.0.3",
-    "@react-native-google-signin/google-signin": "^6.0.0",
     "@react-native-picker/picker": "^2.4.2",
     "@react-navigation/bottom-tabs": "^5.11.9",
     "@react-navigation/core": "^5.15.3",

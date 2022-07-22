@@ -422,7 +422,6 @@ DEPENDENCIES:
   - RNFastImage (from `../node_modules/react-native-fast-image`)
   - RNFS (from `../node_modules/react-native-fs`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
-  - "RNGoogleSignin (from `../node_modules/@react-native-google-signin/google-signin`)"
   - RNInAppBrowser (from `../node_modules/react-native-inappbrowser-reborn`)
   - "RNReactNativeGetMusicFiles (from `../node_modules/@yajanarao/react-native-get-music-files`)"
   - RNReanimated (from `../node_modules/react-native-reanimated`)
