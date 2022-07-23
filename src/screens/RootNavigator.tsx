@@ -17,7 +17,6 @@ import LaunchScreen from './launch/Launch';
 import { PlayerStack } from './player';
 import { FindScreen } from './shared/Find';
 // import { Header } from '../components/Header';
-import PaymentScreen from './payment/Payment';
 import SignIn from './Auth/SignIn';
 import SignUp from './Auth/SignUp';
 import Login from './Auth/Login';
@@ -151,14 +150,6 @@ const AppStack = () => {
       <NativeStack.Screen name="App" component={RootStack} />
       <NativeStack.Screen name="Auth" component={Auth} />
       <NativeStack.Screen name="Launch" component={LaunchScreen} />
-      <Stack.Screen
-        name="Payment"
-        component={PaymentScreen}
-        options={{
-          headerTitleAlign: 'center',
-          headerTitle: 'Subscription Plan',
-        }}
-      />
     </NativeStack.Navigator>
   );
 };
