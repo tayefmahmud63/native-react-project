@@ -1,11 +1,40 @@
 import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
-import { Auth } from 'aws-amplify';
+import { Auth, Hub } from 'aws-amplify';
 import * as React from 'react';
 import { Image, View } from 'react-native';
 import { Button, Divider, Text } from 'react-native-paper';
 import { Screen } from '../../components/Screen';
 
 function Login({ navigation }) {
+    const [user, setUser] = React.useState(null);
+
+    React.useEffect(() => {
+        Hub.listen('auth', ({ payload: { event, data } }) => {
+          switch (event) {
+            case 'signIn':
+            case 'cognitoHostedUI':
+              getUser().then(userData => setUser(userData));
+              navigation.navigate("App");
+              break;
+            case 'signOut':
+              setUser(null);
+              break;
+            case 'signIn_failure':
+            case 'cognitoHostedUI_failure':
+              console.log('Sign in failure', data);
+              break;
+          }
+        });
+    
+        getUser().then(userData => setUser(userData));
+      }, []);
+
+      function getUser() {
+        return Auth.currentAuthenticatedUser()
+          .then(userData => userData)
+          .catch(() => console.log('Not signed in'));
+      }
+    
     return (
         <Screen>
             <View style={{ flex: 1, justifyContent: "space-around", alignItems: "center", marginVertical: 24 }}>

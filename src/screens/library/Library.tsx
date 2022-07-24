@@ -7,7 +7,7 @@ import { Screen } from '../../components/Screen';
 export default function Library() {
     const { colors } = useTheme();
     const [active, setActive] = React.useState(0);
-    let pagerViewRef = React.useRef(null)
+    let pagerViewRef = React.useRef(null);
 
     function onChange(index) {
         setActive(index);
