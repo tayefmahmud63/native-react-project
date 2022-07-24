@@ -22,7 +22,6 @@
 		75B004B7186E46D0B09E5F55 /* Nunito-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 02073144413E4E2693FB86E3 /* Nunito-ExtraBold.ttf */; };
 		80212A6B2B884D429C920F0E /* Nunito-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB1C14B62CB44794A43A9E55 /* Nunito-BoldItalic.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		A65FB98A265424D100153C42 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A65FB989265424D100153C42 /* GoogleService-Info.plist */; };
 		A66B52312679149600E71FEC /* RNPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AE12C36112499FA50E3A06 /* RNPlaceholder.swift */; };
 		A6CCB822264EDA9400E1E56D /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6CCB821264EDA9300E1E56D /* BootSplash.storyboard */; };
 		A6CCB92D264EF56700E1E56D /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CCB92C264EF56700E1E56D /* File.swift */; };
@@ -69,7 +68,6 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = MFT/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9CCFFEEF74129BCD00E06F84 /* Pods-MFT-MFTTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MFT-MFTTests.debug.xcconfig"; path = "Target Support Files/Pods-MFT-MFTTests/Pods-MFT-MFTTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A29BE2744ECB465D9389B8ED /* Nunito-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-ExtraLight.ttf"; path = "../assets/fonts/Nunito-ExtraLight.ttf"; sourceTree = "<group>"; };
-		A65FB989265424D100153C42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "./MFT/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A6CCB821264EDA9300E1E56D /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = MFT/BootSplash.storyboard; sourceTree = "<group>"; };
 		A6CCB92B264EF56700E1E56D /* MFT-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MFT-Bridging-Header.h"; sourceTree = "<group>"; };
 		A6CCB92C264EF56700E1E56D /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
@@ -128,7 +126,6 @@
 		13B07FAE1A68108700A75B9A /* MFT */ = {
 			isa = PBXGroup;
 			children = (
-				A65FB989265424D100153C42 /* GoogleService-Info.plist */,
 				A6CCB821264EDA9300E1E56D /* BootSplash.storyboard */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -322,7 +319,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6CCB822264EDA9400E1E56D /* BootSplash.storyboard in Resources */,
-				A65FB98A265424D100153C42 /* GoogleService-Info.plist in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				1482904A99F446AF9315B5D0 /* Nunito-Black.ttf in Resources */,
@@ -575,7 +571,6 @@
 					"\"${PODS_ROOT}/Headers/Public/RNFS\"",
 					"\"${PODS_ROOT}/Headers/Public/RNFastImage\"",
 					"\"${PODS_ROOT}/Headers/Public/RNGestureHandler\"",
-					"\"${PODS_ROOT}/Headers/Public/RNGoogleSignin\"",
 					"\"${PODS_ROOT}/Headers/Public/RNInAppBrowser\"",
 					"\"${PODS_ROOT}/Headers/Public/RNReanimated\"",
 					"\"${PODS_ROOT}/Headers/Public/RNSVG\"",
@@ -660,7 +655,6 @@
 					"\"${PODS_ROOT}/Headers/Public/RNFS\"",
 					"\"${PODS_ROOT}/Headers/Public/RNFastImage\"",
 					"\"${PODS_ROOT}/Headers/Public/RNGestureHandler\"",
-					"\"${PODS_ROOT}/Headers/Public/RNGoogleSignin\"",
 					"\"${PODS_ROOT}/Headers/Public/RNInAppBrowser\"",
 					"\"${PODS_ROOT}/Headers/Public/RNReanimated\"",
 					"\"${PODS_ROOT}/Headers/Public/RNSVG\"",

@@ -129,12 +129,12 @@ const RootStack = () => {
 };
 
 
-function Auth () {
+function Auth() {
   return (
     <AuthStack.Navigator>
       <AuthStack.Screen name="Login" component={Login} options={{ headerShown: false }} />
-      <AuthStack.Screen name="SignIn" component={SignIn} />
-      <AuthStack.Screen name="SignUp" component={SignUp} options={{title: 'CREATE ACCOUNT', headerTitleAlign: 'center'}} />
+      <AuthStack.Screen name="SignIn" component={SignIn} options={{ title: 'LOGIN', headerBackTitleVisible: false }} />
+      <AuthStack.Screen name="SignUp" component={SignUp} options={{ headerBackTitleVisible: false, title: 'CREATE ACCOUNT', headerTitleAlign: 'center' }} />
       <AuthStack.Screen name="Verify" component={Verify} />
     </AuthStack.Navigator>
   )
