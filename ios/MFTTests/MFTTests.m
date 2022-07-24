@@ -14,7 +14,7 @@
 @implementation MFTTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL(^)(UIView *view))test
-{P
+{
   if (test(view)) {
     return YES;
   }
