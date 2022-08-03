@@ -53,7 +53,7 @@ export const LibraryStack = () => {
     <Stack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: colors.surface,
+          backgroundColor: colors.background,
         },
         headerTintColor: colors.text,
         safeAreaInsets: { top: 0, bottom: 0 },
@@ -65,7 +65,7 @@ export const LibraryStack = () => {
       <Stack.Screen
         name="Library"
         component={Library}
-        options={{ headerShown: false }}
+        options={{ headerTitle: 'LIBRARY' }}
       />
       <Stack.Screen
         name="Downloads"

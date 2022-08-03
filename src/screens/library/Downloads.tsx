@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { deleteDownload, listDownloads } from '../../actions/downloads';
 import { addToQueue } from '../../actions/playerState';
 import { DefaultImage } from '../../components/DefaultImage';
-import { TrackItem } from './components/TrackItem';
+// import { TrackItem } from './components/TrackItem';
 import { TrackProps } from '../../utils/types';
 // import RNFS from 'react-native-fs';
 
@@ -68,13 +68,6 @@ export function DownloadScreen({ }: DownloadScreenProps) {
   }
 
 
-  function deleteMedia(track: TrackProps) {
-    deleteDownload(track.path);
-    setRefreshing(true);
-    setTimeout(() => {
-      onRefresh();
-    }, 2000);
-  };
 
   return (
     <View style={{ flex: 1 }}>
@@ -96,9 +89,9 @@ export function DownloadScreen({ }: DownloadScreenProps) {
           </View>
         )}
         data={songs}
-        renderItem={({ item }: { item: TrackProps }) => (
-          <TrackItem track={item} onRightIconPress={deleteMedia} />
-        )}
+        // renderItem={({ item }: { item: TrackProps }) => (
+        //   <TrackItem track={item} onRightIconPress={deleteMedia} />
+        // )}
         ItemSeparatorComponent={() => <Divider inset />}
         keyExtractor={(item, index) => index.toString()}
         ListFooterComponent={() => <View style={{ height: 100 }} />}

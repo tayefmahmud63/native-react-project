@@ -7,7 +7,7 @@ import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 import color from 'color';
 
 import { SafeAreaView } from 'react-native';
-import { OfflineStack } from './offline';
+import ArtistPortal from './offline';
 import { SearchStack } from './search';
 import HomeStack from './home';
 import { LibraryStack } from './library';
@@ -85,7 +85,7 @@ const BottomNavigator = () => {
       />
       <Tab.Screen
         name="Artist Portal"
-        component={OfflineStack}
+        component={ArtistPortal}
         options={{
           tabBarIcon: ({ focused }) => (
             <IconButton

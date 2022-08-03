@@ -3,6 +3,12 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import PagerView from 'react-native-pager-view';
 import { Searchbar, Text, useTheme } from 'react-native-paper';
 import { Screen } from '../../components/Screen';
+import { Title } from '../../components/Title';
+import RecentlyAdded from './components/RecenlyAdded';
+import { Headline } from '../../components/Headline';
+import Invest from './components/Invest';
+
+
 
 export default function Library() {
     const { colors } = useTheme();
@@ -34,9 +40,10 @@ export default function Library() {
                         style={{ borderRadius: 12, borderWidth: 1, borderColor: colors.text, backgroundColor: colors.background }}
                         icon={'search-outline'}
                     />
+                    <RecentlyAdded />
                 </View>
                 <View key="2">
-                    <Text>Second page</Text>
+                   <Invest/>
                 </View>
             </PagerView>
         </Screen>
