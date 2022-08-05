@@ -17,13 +17,18 @@ function SignIn({ navigation }) {
             setLoading(false);
             navigation.navigate("App");
         } catch (error) {
+            setLoading(false)
             console.log('error signing in', error);
-            Alert.alert("Error Signing In", JSON.stringify(error));
+            if(error.message == "Incorrect username or password."){
+                Alert.alert("Error Signing In", "Incorrect username or password.");
+            } else {
+                Alert.alert("Error Signing In", JSON.stringify(error));
+            }
         }
     }
     return (
         <Screen>
-            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', padding: 12}}>
                 {/* <View style={{ margin: 12 }}> */}
                     <TextInput
                         label="Email"
