@@ -83,7 +83,7 @@ export const ICONS = {
   pause: PauseIcon,
   plus: PlusIcon,
   checkmark: CheckmarkIcon,
-  close: CloseIcon,
+  'close': CloseIcon,
   'more-vertical-outline': MoreVerticalOutlineIcon,
   'menu-outline': MenuOutlineIcon,
   folder: FolderIcon,

@@ -104,7 +104,7 @@ export const PlaylistOptions = ({ route, navigation }) => {
               }}
             >
               <TouchableWithoutFeedback onPress={closeBottomSheet}>
-                <IconButton icon="close" />
+                {/* <IconButton icon="close" /> */}
               </TouchableWithoutFeedback>
             </View>
             <TouchableWithoutFeedback

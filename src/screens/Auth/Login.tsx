@@ -40,9 +40,7 @@ function Login({ navigation }) {
   return (
     <Screen>
       <View style={{ flex: 1, justifyContent: "space-around", alignItems: "center", marginVertical: 24, marginHorizontal: 24 }}>
-        {/* <View style={{ justifyContent: 'center', alignItems: 'center' }}> */}
-          <Image source={require('../../assets/Images/brand.png')} style={{ width: '100%', height: 120 }} />
-        {/* </View> */}
+        <Image source={require('../../assets/Images/brand.png')} style={{ width: '100%', height: 120 }} />
         <View>
           <View style={styles.buttonContainer}>
             <Button mode="contained" uppercase={false} style={styles.button} onPress={() => navigation.navigate("SignUp")}>Continue with Email</Button>
@@ -54,7 +52,7 @@ function Login({ navigation }) {
             <Button mode="outlined" uppercase={false} style={[styles.button, styles.outlined]} labelStyle={{ color: colors.text }}>Continue Wallet</Button>
           </View>
         </View>
-        <Divider style={{width: '90%', padding: 1}} />
+        <Divider style={{ width: '90%', padding: 1 }} />
         <View style={styles.buttonContainer}>
           <Text style={{ textAlign: 'center', marginVertical: 8 }}>Already have an account ?</Text>
           <Button mode="outlined" uppercase={false} style={[styles.button, styles.outlined]} labelStyle={{ color: colors.text }} onPress={() => navigation.navigate("SignIn")}>Login</Button>

@@ -20,6 +20,7 @@ export const SearchStack = () => {
         headerTintColor: colors.text,
         headerTitleAlign: 'center',
         safeAreaInsets: { top: 0, bottom: 0 },
+        headerBackTitleVisible: false,
         headerBackImage: () => (
           <IconButton style={{ marginLeft: 0 }} icon="arrow-back" />
         ),

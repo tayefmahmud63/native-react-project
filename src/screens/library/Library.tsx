@@ -43,7 +43,7 @@ export default function Library() {
                     <RecentlyAdded />
                 </View>
                 <View key="2">
-                   <Invest/>
+                    <Invest />
                 </View>
             </PagerView>
         </Screen>
@@ -54,5 +54,5 @@ const styles = StyleSheet.create({
     pagerView: {
         flex: 1,
     },
-    tabButton: { borderWidth: 1, borderRadius: 20, width: 200, height: 35, justifyContent: 'center', alignItems: 'center' }
+    tabButton: { borderWidth: 1, flex: 1, borderRadius: 20, height: 35, justifyContent: 'center', alignItems: 'center', marginHorizontal: 4 }
 });

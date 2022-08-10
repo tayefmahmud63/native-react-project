@@ -10,6 +10,9 @@ import FastImage from 'react-native-fast-image';
 import { Text } from 'react-native-paper';
 import { Headline } from '../../../components/Headline';
 
+
+const albumSize = Dimensions.get('window').width / 2 - 20;
+
 const RecentlyAdded = () => {
     const [media, setMedia] = React.useState([]);
     const netInfo = useNetInfo();
@@ -83,24 +86,22 @@ export default RecentlyAdded;
 
 const styles = StyleSheet.create({
     item: {
-    //   alignItems: 'center',
-      marginBottom: 8,
-      marginHorizontal: 8,
-      width: 225,
+        marginBottom: 8,
+        marginHorizontal: 8,
+        width: albumSize,
     },
     title: {
-      fontSize: 12,
-      marginTop: 8,
-      padding: 0,
-      fontFamily: 'Nunito-Bold',
-      includeFontPadding: false,
+        fontSize: 12,
+        marginTop: 8,
+        padding: 0,
+        fontFamily: 'Nunito-Bold',
+        includeFontPadding: false,
     },
     photo: {
-      borderRadius: 12,
-      elevation: 4,
-      height: 250,
-      width: '100%',
-      backgroundColor: 'gray'
+        borderRadius: 12,
+        elevation: 4,
+        height: albumSize,
+        width: '100%',
+        backgroundColor: 'gray'
     },
-  });
-  
+});

@@ -310,7 +310,7 @@ PODS:
     - React
   - RNAWSCognito (5.2.10):
     - React-Core
-  - RNBootSplash (3.2.7):
+  - RNBootSplash (4.2.3):
     - React-Core
   - RNCAsyncStorage (1.17.7):
     - React-Core
@@ -336,7 +336,7 @@ PODS:
     - React-Core
   - RNShare (5.3.0):
     - React-Core
-  - RNSVG (12.3.0):
+  - RNSVG (12.4.0):
     - React-Core
   - SDWebImage (5.11.1):
     - SDWebImage/Core (= 5.11.1)
@@ -566,7 +566,7 @@ SPEC CHECKSUMS:
   ReactCommon: c11b11a5dc8187826144b7b3d72125c77a1b7b1a
   RealmJS: 400aac2267a47b25fcc2b6321e8a419282719d16
   RNAWSCognito: 590dbcb259ec5a593b80f4d56624d386dd7b34ee
-  RNBootSplash: f31eba8f6d496e2029859e06e5582cac4607256d
+  RNBootSplash: e8a36a88f8c868769ec998c5afe3082032e82fc2
   RNCAsyncStorage: d81ee5c3db1060afd49ea7045ad460eff82d2b7d
   RNCMaskedView: 0e1bc4bfa8365eba5fbbb71e07fbdc0555249489
   RNCPicker: 0250e95ad170569a96f5b0555cdd5e65b9084dca
@@ -578,7 +578,7 @@ SPEC CHECKSUMS:
   RNReanimated: c1b56d030d1616239861534d9adb531f8cffab68
   RNScreens: f7ad633b2e0190b77b6a7aab7f914fad6f198d8d
   RNShare: 4df87d1791f50a2c7b1d89432fb9bbb7c02a9c9a
-  RNSVG: 302bfc9905bd8122f08966dc2ce2d07b7b52b9f8
+  RNSVG: 3dd44d99d1c18e1342aee4bfa53ab3f6a8c4865f
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SDWebImageWebPCoder: 908b83b6adda48effe7667cd2b7f78c897e5111d
   SwiftAudioEx: 3a4024e48f3b3e45dac6bf2668d7adbe7b83f50e

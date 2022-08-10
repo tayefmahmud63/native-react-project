@@ -1,12 +1,13 @@
 import { DataStore } from 'aws-amplify';
 import * as React from 'react';
-import { FlatList, Text, View } from 'react-native';
+import { FlatList, View, Dimensions } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 import FastImage from 'react-native-fast-image';
-import { Button } from 'react-native-paper';
+import { Text } from 'react-native-paper';
 import ThemedButton from '../../../components/ThemedButton';
 import { Album } from '../../../models';
 
+const chartSize = Dimensions.get('window').width / 3;
 
 function MFTList() {
     const [items, setItems] = React.useState([]);
@@ -26,49 +27,44 @@ function MFTList() {
 
     return (
         <FlatList data={items} renderItem={({ item }) => (
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginVertical: 12 }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginVertical: 12, width: '100%' }}>
                 <FastImage source={{ uri: item.cover }} style={{ width: 120, height: 120, borderRadius: 4 }} />
-                <View>
+                <View style={{ marginHorizontal: 8 }}>
                     <Text>{item.title}</Text>
                     <Text>{item.author}</Text>
-                    <View style={{  justifyContent: 'center', alignItems: 'center', backgroundColor: 'green' }}>
-                        <LineChart
-                            data={{
-                                // labels: ["January", "February", "March", "April", "May", "June"],
-                                datasets: [
-                                    {
-                                        data: [
-                                            Math.random() * 10,
-                                            Math.random() * 10,
-                                            Math.random() * 10,
-                                            Math.random() * 10,
-                                            Math.random() * 10,
-                                            Math.random() * 10
-                                        ]
-                                    }
-                                ]
-                            }}
-                            width={240} // from react-native
-                            height={50}
-                            yAxisInterval={1} // optional, defaults to 1
-                            chartConfig={{
-                                color: (opacity = 1) => 'green',
-                            }}
-                            withDots={false}
-                            withInnerLines={false}
-                            withOuterLines={false}
-                            withHorizontalLabels={false}
-                            withVerticalLabels={false}
-                            style={{
-                                backgroundColor: 'green'
-                            }}
-                        />
-                    </View>
+                    <LineChart
+                        data={{
+                            // labels: ["January", "February", "March", "April", "May", "June"],
+                            datasets: [
+                                {
+                                    data: [
+                                        Math.random() * 10,
+                                        Math.random() * 10,
+                                        Math.random() * 10,
+                                        Math.random() * 10,
+                                        Math.random() * 10,
+                                        Math.random() * 10
+                                    ]
+                                }
+                            ]
+                        }}
+                        width={chartSize} // from react-native
+                        height={60}
+                        yAxisInterval={1} // optional, defaults to 1
+                        chartConfig={{
+                            color: (opacity = 1) => 'green',
+                        }}
+                        withDots={false}
+                        withInnerLines={false}
+                        withOuterLines={false}
+                        withHorizontalLabels={false}
+                        withVerticalLabels={false}
+                    />
                 </View>
                 <View>
                     <Text>CURRENT BID</Text>
                     <Text>{item.price}</Text>
-                    <ThemedButton/>
+                    <ThemedButton />
                 </View>
             </View>
         )}

@@ -19,7 +19,7 @@ function SignIn({ navigation }) {
         } catch (error) {
             setLoading(false)
             console.log('error signing in', error);
-            if(error.message == "Incorrect username or password."){
+            if (error.message == "Incorrect username or password.") {
                 Alert.alert("Error Signing In", "Incorrect username or password.");
             } else {
                 Alert.alert("Error Signing In", JSON.stringify(error));
@@ -28,28 +28,31 @@ function SignIn({ navigation }) {
     }
     return (
         <Screen>
-            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', padding: 12}}>
-                    <TextInput
-                        label="Email"
-                        mode='outlined'
-                        value={email}
-                        style={{ marginVertical: 4, width: '100%' }}
-                        onChangeText={text => setEmail(text)}
-                    />
-                    <TextInput
-                        label="Password"
-                        mode='outlined'
-                        value={password}
-                        secureTextEntry={true}
-                        style={{ marginVertical: 4, width: '100%' }}
-                        onChangeText={text => setPassword(text)}
-                    />
-                    <View style={{ marginVertical: 8, width: '100%' }}>
-                        <Button onPress={signIn} mode="contained" loading={loading} style={{ paddingVertical: 6, borderRadius: 40, width: '100%' }}>Login</Button>
-                    </View>
-                    <View style={{ marginVertical: 8, width: '100%' }}>
-                        <Button onPress={() => navigation.navigate("SignUp")} mode="contained" style={{ paddingVertical: 6, borderRadius: 40, width: '100%' }}>Sign Up</Button>
-                    </View>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 12 }}>
+                <TextInput
+                    label="Email"
+                    mode='outlined'
+                    value={email}
+                    style={{ marginVertical: 4, width: '100%' }}
+                    keyboardType='email-address'
+                    autoCapitalize='none'
+                    autoCompleteType='email'
+                    onChangeText={text => setEmail(text)}
+                />
+                <TextInput
+                    label="Password"
+                    mode='outlined'
+                    value={password}
+                    secureTextEntry={true}
+                    style={{ marginVertical: 4, width: '100%' }}
+                    onChangeText={text => setPassword(text)}
+                />
+                <View style={{ marginVertical: 8, width: '100%' }}>
+                    <Button onPress={signIn} mode="contained" loading={loading} style={{ paddingVertical: 6, borderRadius: 40, width: '100%' }}>Login</Button>
+                </View>
+                <View style={{ marginVertical: 8, width: '100%' }}>
+                    <Button onPress={() => navigation.navigate("SignUp")} mode="contained" style={{ paddingVertical: 6, borderRadius: 40, width: '100%' }}>Sign Up</Button>
+                </View>
             </View>
         </Screen>
     )
