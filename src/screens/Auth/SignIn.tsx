@@ -29,7 +29,6 @@ function SignIn({ navigation }) {
     return (
         <Screen>
             <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', padding: 12}}>
-                {/* <View style={{ margin: 12 }}> */}
                     <TextInput
                         label="Email"
                         mode='outlined'
@@ -51,7 +50,6 @@ function SignIn({ navigation }) {
                     <View style={{ marginVertical: 8, width: '100%' }}>
                         <Button onPress={() => navigation.navigate("SignUp")} mode="contained" style={{ paddingVertical: 6, borderRadius: 40, width: '100%' }}>Sign Up</Button>
                     </View>
-                {/* </View> */}
             </View>
         </Screen>
     )
